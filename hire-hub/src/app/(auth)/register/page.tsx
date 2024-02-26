@@ -60,7 +60,7 @@ export default function SignUp() {
     {/* Header */}
     <div className="bg-gray-900">
     <div className="container mx-auto px-10">
-    <nav className="flex items-center justify-between py-4">
+    <div className="flex items-center justify-between py-4">
 
       <div className="flex items-center flex-shrink-0 text-white mr-6">
       <input type="text" name="text" placeholder="Search 'UIverse'" className="input"></input>
@@ -78,7 +78,7 @@ export default function SignUp() {
         <button className="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link href="/login">Sign In</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         <button className="button2"><Link href="/register">Sign Up</Link></button>
       </div>
-    </nav>
+    </div>
   </div></div>
 
 
