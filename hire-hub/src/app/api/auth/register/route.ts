@@ -7,14 +7,16 @@ import ErrorReporter from "@/validator/ErrorReporter";
 import bcrypt from "bcryptjs";
 
 interface UserPayload {
-  name: string;
-  email: string;
-  password: string;
-  // city: string;
-  // country: string;
-  // number: string;
-  // age: string;
-}
+    email: "",
+    password: "",
+    city:"",
+    country:"",
+    number:"",
+    age:"",
+    password_confirmation: "",
+    role : ""
+  };
+
 
 connect();
 export async function POST(request: NextRequest) {

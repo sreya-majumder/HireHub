@@ -9,7 +9,7 @@ export default function Home() {
     <nav className="flex items-center justify-between py-4">
 
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-   
+      <button className="search-button"><div className="hoverEffect"><Link href="/search">Search</Link><div></div></div></button>
         <span className="w-5font-semibold text-xl tracking-tight">&nbsp;&nbsp;&nbsp;<Link href="/">Jobify</Link></span>
       </div>
 
@@ -30,7 +30,7 @@ export default function Home() {
 <div className="h-screen flex justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
   <div><p className="text-4xl font-bold animate-appear text-black">Welcome to Jobify&nbsp;&nbsp;&nbsp;</p></div>
   <div>
-  <Link href="/signup">
+  <Link href="/register">
     <button className="get_started-io-button">
     Get Started
     

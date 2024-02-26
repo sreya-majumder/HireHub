@@ -8,10 +8,7 @@ export const registerSchema = vine.object({
   country: vine.string(),
   number: vine.string(),
   age: vine.string(),
-<<<<<<< HEAD
   role : vine.string()
-=======
->>>>>>> b712a93d5cd3f76bbf28fdb642d6143de62c9ba2
 });
 
 export const loginSchema = vine.object({
