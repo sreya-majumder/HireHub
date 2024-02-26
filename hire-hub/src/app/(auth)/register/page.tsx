@@ -76,7 +76,7 @@ export default function SignUp() {
         <p className="text-gray-300 hover:text-white px-4">Contact</p>
 
         <button className="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link href="/login">Sign In</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-        <button className="button2"><Link href="/signup">Sign Up</Link></button>
+        <button className="button2"><Link href="/register">Sign Up</Link></button>
       </div>
     </nav>
   </div></div>
