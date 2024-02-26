@@ -10,10 +10,10 @@ interface UserPayload {
   name: string;
   email: string;
   password: string;
-  city: string;
-  country: string;
-  number: string;
-  age: string;
+  // city: string;
+  // country: string;
+  // number: string;
+  // age: string;
 }
 
 connect();

@@ -1,6 +1,6 @@
 "use server"
-import {connect} from "../../dbConfig/dbConfig";
-import users from "../../models/userModel"
+import { connect } from "@/database/mongo.config";
+import { User } from "@/models/User";
 
 connect()
 export default async function searchResult(str){
@@ -14,13 +14,13 @@ export default async function searchResult(str){
 
     const searchTermFirst = convertFirstLetter(searchTerm)
 
-    let results = await users.find({
+    let results = await User.find({
         $or: [
             {
-                username: {$regex: searchTerm}
+                name: {$regex: searchTerm}
             },
             {
-                username: {$regex: searchTermFirst}
+                name: {$regex: searchTermFirst}
             },
             {
                 city: {$regex: searchTerm}
