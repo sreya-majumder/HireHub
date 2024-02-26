@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import NextAuthSessionProvider from "./provider/sessionProvider";
+import Provider from "./provider";
 
 const inter = Lato({ weight: ["900", "400"], subsets: ["latin"] });
 
@@ -17,8 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}> {children}
-        {/* <NextAuthSessionProvider>{children}</NextAuthSessionProvider> */}
+      <body className={inter.className}>
+        <Provider>
+          <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        </Provider>
       </body>
     </html>
   );
