@@ -11,30 +11,28 @@ const SearchInput = () => {
     }
   return (
     <>
-      <div className='text-center'>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          className="shadow-xl shadow-slate-500 w-[75%] h-10 p-2 outline-none"
-          placeholder="Search...."
-          onChange={(e) => getResult(e.target.value)} 
-          />
-        <button
-          className="p-2 text-white bg-orange-500 hover:cursor-pointer" onClick={getResult}
-          >
-          Search
-        </button>
+      <div className='flex items-center '>
+      <input type="text" name="search" id="search" placeholder="Search for Users" className="search" onChange={(e) => getResult(e.target.value)}></input>
       </div>
       <div className='m-10'>
         {resultArr.map((element)=>{
           return(
-            <ul key={element._id} className='flex justify-center'>
-              <li className="flex-1 text-black">{element.username}</li>
-              <li className="flex-1 text-black">{element.email}</li>
-              <li className="flex-1 text-black">{element.password}</li>
-              <li className="flex-1 text-black">{element.city}</li>
-            </ul>
+
+
+      <div key={element._id} class="max-w-5xl mx-auto mt-8">
+        <div class="border-l-2 border-gray-500 pl-8">
+        <div class="flex flex-col md:flex-row md:justify-between">
+            <div class="mb-4 md:mb-0">
+                <h3 class="text-black text-xl font-bold mb-2">Name: {element.username}</h3>
+                <p class="text-gray-600 text-sm">City: {element.city}</p>
+            </div>
+            <p class="text-gray-700">Email: {element.email}</p>
+        </div>
+        </div>
+        </div>
+
+
+
           )
         })}
       </div>

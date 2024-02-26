@@ -186,3 +186,37 @@ margin-left: -70%;
   bottom: 0;
   width: 100%;
 }
+
+
+/* for user_search */
+
+.search[type = "text"] {
+  display: block;
+  color: rgb(34, 34, 34);
+  background: linear-gradient(142.99deg, rgba(115, 167, 202, 0.377) 15.53%, rgba(243, 243, 243, 0.63) 88.19%);
+  box-shadow: 0px 12px 24px -1px rgba(0, 0, 0,0.18);
+  border-color: rgba(7, 4, 14, 0);
+  border-radius: 50px;
+  block-size: 20px;
+  margin: 70 auto;
+  padding: 18px 15px;
+  outline: none;
+  text-align: center;
+  width: 1200px;
+  margin-left:0%;
+  margin-top:-2%;
+  transition: 0.5s;
+  
+}
+
+/* .search[type = "text"]:hover {
+  width: 1200px;
+  align-items: center;
+  margin-left: 0%;
+}
+
+.search[type = "text"]:focus {
+  width: 1240px;
+  align-items: center;
+  margin-left: 0%;
+} */

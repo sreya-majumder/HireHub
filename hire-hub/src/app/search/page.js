@@ -7,14 +7,14 @@ import styles from '../../style/user_home.module.css'
 export default function search(){
     return(
 
-
     <>
+
+    <head><title>Search</title></head>
       <div className="bg-gray-900">
     <div className="container mx-auto px-10">
     <nav className="flex items-center justify-between py-4">
 
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-      <input type="text" name="text" placeholder="Search 'UIverse'" className="input"></input>
         <span className="w-5font-semibold text-xl tracking-tight">&nbsp;&nbsp;&nbsp;<Link href="/">Jobify</Link></span>
       </div>
 
@@ -32,15 +32,10 @@ export default function search(){
   </div>
 </div>
 <div className="h-screen flex justify-center items-top bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
-  <div>
 
   <div className="m-10">
             <h1 className="text-center">SEARCH</h1>
             <SearchInput searchResult={searchResult}/>
-        </div>
-    
-
-
 </div>
 
 </div>
@@ -52,9 +47,6 @@ export default function search(){
 
 
 </>
-
-
-
   );
 }
 
