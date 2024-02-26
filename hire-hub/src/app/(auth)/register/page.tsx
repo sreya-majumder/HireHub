@@ -19,7 +19,7 @@ export default function SignUp() {
     country:"",
     number:"",
     password_confirmation: "",
-    role : ""
+    role:""
   });
 
   const [errors, setError] = useState<registerErrorType>({});
