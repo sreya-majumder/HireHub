@@ -41,7 +41,29 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     trim: true,
   },
-  
+  job: {
+    type: [
+      {
+        role: String,
+        company: String,
+        description: String,
+      },
+    ],
+    required: false,
+  },
+  projects: {
+    type: [
+      {
+        name: String,
+        about: String,
+      },
+    ],
+    required: false,
+  },
+  skills: {
+    type: [{ name: String }],
+    required: false,
+  },
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

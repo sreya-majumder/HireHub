@@ -15,7 +15,6 @@ export type CustomUser = {
   name?: string | null;
   email?: string | null;
   role?: string | null;
-  
 };
 
 export const authOptions: AuthOptions = {
@@ -77,7 +76,6 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        
         connect();
         const user = await UserModel.findOne({ email: credentials?.email });
         if (user) {
@@ -91,7 +89,5 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
-
-    
   ],
 };
