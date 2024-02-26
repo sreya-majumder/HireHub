@@ -19,13 +19,13 @@ const userSchema = new Schema({
     type: Schema.Types.String,
   },
   country: {
-      type: Schema.Types.String,
+    type: Schema.Types.String,
   },
   number: {
-      type: Schema.Types.String,
+    type: Schema.Types.String,
   },
   age: {
-      type: Schema.Types.String,
+    type: Schema.Types.String,
   },
   role: {
     required: true,

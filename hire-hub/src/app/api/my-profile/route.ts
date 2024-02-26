@@ -1,4 +1,4 @@
-import { User } from "@/models/User";
+import { User } from "../../../models/User";
 
 export async function POST(request: Request) {
   const payload = await request.json();

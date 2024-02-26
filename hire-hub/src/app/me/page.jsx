@@ -37,6 +37,27 @@ export default function page() {
     fetchData();
   }, [user]);
 
+  async function handleSaveProject() {
+    fetch("http://localhost:3000/api/my-profile/add-project", {
+      method: "POST",
+      body: JSON.stringify({
+        projectName: projectName,
+        projectAbout: projectAbout,
+        id: user.data?.user?._id,
+      }),
+    });
+  }
+
+  async function handleSaveSkill() {
+    fetch("http://localhost:3000/api/my-profile/add-skill", {
+      method: "POST",
+      body: JSON.stringify({
+        skillName: newSkill,
+        id: user.data?.user?._id,
+      }),
+    });
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
       <h1 className="text-5xl font-semibold">
@@ -134,7 +155,7 @@ export default function page() {
           <Button
             color="success"
             onClick={() => {
-              console.log(projectName, projectAbout);
+              handleSaveProject();
             }}
           >
             SAVE
