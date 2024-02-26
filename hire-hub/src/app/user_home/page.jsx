@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
+import styles from '../../style/user_home.module.css'
 
 
 
@@ -26,8 +26,7 @@ export default function Home() {
         <p className="text-gray-300 hover:text-white px-4">Services</p>
         <p className="text-gray-300 hover:text-white px-4">Contact</p>
 
-        <button className="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link href="/login">Sign In</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-        <button className="button2"><Link href="/signup">Sign Up</Link></button>
+
       </div>
     </nav>
   </div>
@@ -36,11 +35,11 @@ export default function Home() {
   <div><p className="text-4xl font-bold animate-appear text-black">Welcome to Jobify&nbsp;&nbsp;&nbsp;</p></div>
   <div>
   <Link href="/signup">
-    <button className="get_started-io-button">
+    <button className={styles.get_started-io-button}>
     Get Started
     
     
-    <div className="icon">
+    <div className={styles.icon}>
       <svg
         height="24"
         width="24"
@@ -60,7 +59,7 @@ export default function Home() {
 </div>
 
 
-<footer className="footer">
+<footer className={styles.footer}>
         <p>Developed by Zawad, Rupkatha, Sreya</p>
     </footer>
 
