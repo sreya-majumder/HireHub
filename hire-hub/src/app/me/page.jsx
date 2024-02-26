@@ -2,19 +2,21 @@
 
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { Button, Input } from "@nextui-org/react";
 
 export default function page() {
-  // TODO: 1. Get the current logged in user
-
   const user = useSession();
 
   if (!user) {
     return <h1>Please login</h1>;
   }
 
-  // TODO: 2. Show the user information
-
   const [userInfo, setuserInfo] = React.useState(undefined);
+  const [city, setcity] = React.useState("");
+  const [country, setcountry] = React.useState("");
+  const [newSkill, setNewSkill] = React.useState("");
+  const [projectName, setProjectName] = React.useState("");
+  const [projectAbout, setProjectAbout] = React.useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +29,10 @@ export default function page() {
       });
       const data = await response.json();
       setuserInfo(data);
+      if (data) {
+        setcity(data.city);
+        setcountry(data.country);
+      }
     };
     fetchData();
   }, [user]);
@@ -40,9 +46,35 @@ export default function page() {
         <h3 className="text-3xl font-semibold">Location</h3>
         {userInfo && (
           <p className="text-lg">
-            {userInfo.city}, {userInfo.country}
+            {userInfo.city}
+            {userInfo.country}
           </p>
         )}
+
+        <div className="flex gap-2 max-w-screen-md items-center">
+          <Input
+            placeholder={city == "" && "City"}
+            size="sm"
+            onChange={(e) => {
+              setcity(e.target.value);
+            }}
+          />
+          <Input
+            placeholder={country == "" && "Country"}
+            size="sm"
+            onChange={(e) => {
+              setcountry(e.target.value);
+            }}
+          />
+          <Button
+            color="success"
+            onClick={() => {
+              console.log(city, country);
+            }}
+          >
+            SAVE
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 py-4">
@@ -52,6 +84,25 @@ export default function page() {
           userInfo.skills.map((skill) => (
             <p className="text-lg">{skill.name}</p>
           ))}
+
+        <div className="flex gap-2 max-w-screen-md items-center">
+          <Input
+            placeholder={"Type Skill Name"}
+            size="sm"
+            onChange={(e) => {
+              setNewSkill(e.target.value);
+            }}
+          />
+
+          <Button
+            color="success"
+            onClick={() => {
+              console.log(newSkill);
+            }}
+          >
+            SAVE
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 py-4">
@@ -64,6 +115,31 @@ export default function page() {
               <p className="text-lg">{project.about}</p>
             </div>
           ))}
+
+        <div className="flex gap-2 max-w-screen-md items-center">
+          <Input
+            placeholder={"Project Name"}
+            size="sm"
+            onChange={(e) => {
+              setProjectName(e.target.value);
+            }}
+          />
+          <Input
+            placeholder={"About Project"}
+            size="sm"
+            onChange={(e) => {
+              setProjectAbout(e.target.value);
+            }}
+          />
+          <Button
+            color="success"
+            onClick={() => {
+              console.log(projectName, projectAbout);
+            }}
+          >
+            SAVE
+          </Button>
+        </div>
       </div>
     </div>
   );
