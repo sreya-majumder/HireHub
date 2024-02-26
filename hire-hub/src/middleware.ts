@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
 
  
-  const userProtectedRoutes = ["/"];
+  const userProtectedRoutes = ["/search"];
 
   
   const recruiterProtectedRoutes = ["/recruiter/dashboard"];

@@ -17,6 +17,7 @@ const userSchema = new Schema({
   },
   city: {
     type: Schema.Types.String,
+<<<<<<< HEAD
     required: true,
   },
   country: {
@@ -30,6 +31,17 @@ const userSchema = new Schema({
   age: {
       type: Schema.Types.String,
       required: true,
+=======
+  },
+  country: {
+      type: Schema.Types.String,
+  },
+  number: {
+      type: Schema.Types.String,
+  },
+  age: {
+      type: Schema.Types.String,
+>>>>>>> b712a93d5cd3f76bbf28fdb642d6143de62c9ba2
   },
   role: {
     required: true,
