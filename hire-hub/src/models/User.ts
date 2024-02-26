@@ -15,22 +15,18 @@ const userSchema = new Schema({
   password: {
     type: Schema.Types.String,
   },
-  // city: {
-  //   type: Schema.Types.String,
-  //   required: true,
-  // },
-  // country: {
-  //     type: Schema.Types.String,
-  //     required: true,
-  // },
-  // number: {
-  //     type: Schema.Types.String,
-  //     required: true,
-  // },
-  // age: {
-  //     type: Schema.Types.String,
-  //     required: true,
-  // },
+  city: {
+    type: Schema.Types.String,
+  },
+  country: {
+      type: Schema.Types.String,
+  },
+  number: {
+      type: Schema.Types.String,
+  },
+  age: {
+      type: Schema.Types.String,
+  },
   role: {
     required: true,
     type: Schema.Types.String,

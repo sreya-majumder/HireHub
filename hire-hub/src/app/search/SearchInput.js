@@ -23,10 +23,10 @@ const SearchInput = () => {
         <div class="border-l-2 border-gray-500 pl-8">
         <div class="flex flex-col md:flex-row md:justify-between">
             <div class="mb-4 md:mb-0">
-                <h3 class="text-black text-xl font-bold mb-2">Name: {element.username}</h3>
-                <p class="text-gray-600 text-sm">City: {element.city}</p>
+                <h3 class="text-black text-xl font-bold mb-2">Name: {element.name}</h3>
+                <p class="text-black text-sm">City: {element.city}</p>
             </div>
-            <p class="text-gray-700">Email: {element.email}</p>
+            <p class="text-black">Email: {element.email}</p>
         </div>
         </div>
         </div>
