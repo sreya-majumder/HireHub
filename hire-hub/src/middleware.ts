@@ -1,32 +1,55 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
- 
+import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from "next/server";
+import { CustomUser } from "./app/api/auth/[...nextauth]/options";
 
-export function middleware(request: NextRequest) {
-  const path = request.nextUrl.pathname
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-  const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail'
-
-  const token = request.cookies.get('token')?.value || ''
-
-  if(isPublicPath && token) {
-    return NextResponse.redirect(new URL('/profile', request.nextUrl))
+  if (pathname == "/login" || pathname == "/admin/login") {
+    return NextResponse.next();
   }
 
-  if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL('/', request.nextUrl))
-  }
-    
-}
+  const token = await getToken({ req: request });
 
- 
-// See "Matching Paths" below to learn more
-export const config = {
-  matcher: [
-    '/user_home',
-    '/profile',
-    '/login',
-    '/signup',
-    '/verifyemail'
-  ]
+  // * Protected routes for user
+  const userProtectedRoutes = ["/"];
+
+  // * Protected routes for admin
+  const adminProtectedRoutes = ["/admin/dashboard"];
+
+  if (
+    token == null &&
+    (userProtectedRoutes.includes(pathname) ||
+      adminProtectedRoutes.includes(pathname))
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        "/login?error=Please login first to access this route",
+        request.url
+      )
+    );
+  }
+
+  //   * Get user from token
+  const user: CustomUser | null = token?.user as CustomUser;
+
+  // * if user try to access admin routes
+  if (adminProtectedRoutes.includes(pathname) && user.role == "User") {
+    return NextResponse.redirect(
+      new URL(
+        "/admin/login?error=Please login first to access this route.",
+        request.url
+      )
+    );
+  }
+
+  //   * If Admin try to access user routes
+  if (userProtectedRoutes.includes(pathname) && user.role == "Admin") {
+    return NextResponse.redirect(
+      new URL(
+        "/login?error=Please login first to access this route.",
+        request.url
+      )
+    );
+  }
 }

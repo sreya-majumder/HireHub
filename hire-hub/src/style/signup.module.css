@@ -14,8 +14,8 @@
 .form {
     display: flex;
     flex-direction: column;
-    width: 700px;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     gap: 10px;
     padding-left: 2em;
     padding-right: 2em;
