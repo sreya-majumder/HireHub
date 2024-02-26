@@ -5,22 +5,22 @@ import { CustomUser } from "./app/api/auth/[...nextauth]/options";
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname == "/login" || pathname == "/admin/login") {
+  if (pathname == "/login" || pathname == "/recruiter/login") {
     return NextResponse.next();
   }
 
   const token = await getToken({ req: request });
 
-  // * Protected routes for user
+ 
   const userProtectedRoutes = ["/search"];
 
-  // * Protected routes for admin
-  const adminProtectedRoutes = ["/admin/dashboard"];
+  
+  const recruiterProtectedRoutes = ["/recruiter/dashboard"];
 
   if (
     token == null &&
     (userProtectedRoutes.includes(pathname) ||
-      adminProtectedRoutes.includes(pathname))
+      recruiterProtectedRoutes.includes(pathname))
   ) {
     return NextResponse.redirect(
       new URL(
@@ -30,24 +30,24 @@ export async function middleware(request: NextRequest) {
     );
   }
 
-  //   * Get user from token
+  
   const user: CustomUser | null = token?.user as CustomUser;
 
-  // * if user try to access admin routes
-  if (adminProtectedRoutes.includes(pathname) && user.role == "User") {
+  
+  if (recruiterProtectedRoutes.includes(pathname) && user.role == "User") {
     return NextResponse.redirect(
       new URL(
-        "/admin/login?error=Please login first to access this route.",
+        "/recruiter/login?error=Only recruiter can access.",
         request.url
       )
     );
   }
 
-  //   * If Admin try to access user routes
-  if (userProtectedRoutes.includes(pathname) && user.role == "Admin") {
+  
+  if (userProtectedRoutes.includes(pathname) && user.role == "Recruiter") {
     return NextResponse.redirect(
       new URL(
-        "/login?error=Please login first to access this route.",
+        "/login?error=Only user can login.",
         request.url
       )
     );

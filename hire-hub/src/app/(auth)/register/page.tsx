@@ -13,12 +13,20 @@ export default function SignUp() {
   const [userState, setUserState] = useState({
     email: "",
     password: "",
+<<<<<<< HEAD
+    city:"",
+    country:"",
+    number:"",
+    age:"",
+=======
     name: "",
     age:"",
     city:"",
     country:"",
     number:"",
+>>>>>>> b712a93d5cd3f76bbf28fdb642d6143de62c9ba2
     password_confirmation: "",
+    role : ""
   });
 
   const [errors, setError] = useState<registerErrorType>({});
@@ -115,6 +123,10 @@ export default function SignUp() {
         <input autoComplete="off" placeholder="Country" className={styles.input_field} type="text" id="country" onChange={(e) =>setUserState({ ...userState, country: e.target.value })}/>
         <input autoComplete="off" placeholder="Number" className={styles.input_field} type="text" id="number" onChange={(e) =>setUserState({ ...userState, number: e.target.value })}/>
         <input autoComplete="off" placeholder="Age" className={styles.input_field} type="text" id="age" onChange={(e) =>setUserState({ ...userState, age: e.target.value })}/>
+<<<<<<< HEAD
+        <input autoComplete="off" placeholder="Role" className={styles.input_field} type="text" id="role" onChange={(e) =>setUserState({ ...userState, role: e.target.value })}/>
+=======
+>>>>>>> b712a93d5cd3f76bbf28fdb642d6143de62c9ba2
     </div>
     <div className={styles.field}>
     <svg className={styles.input_icon} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
