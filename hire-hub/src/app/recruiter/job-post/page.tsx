@@ -21,6 +21,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function page() {
   const [jobCreated, setjobCreated] = useState(false);
@@ -30,8 +31,15 @@ export default function page() {
     formState: { errors },
   } = useForm<Inputs>();
   const router = useRouter();
+
+  const session = useSession();
+  const { data: sessionData } = session;
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const response = await axios.post("/api/job", data);
+    const response = await axios.post("/api/job", {
+      ...data,
+      postedBy: sessionData?.user._id,
+    });
 
     if (response.status == 200) {
       setjobCreated(true);

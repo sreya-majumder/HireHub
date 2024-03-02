@@ -24,6 +24,10 @@ const jobSchema = new Schema({
     required: [true, "Description is required. Please enter the description."],
     type: Schema.Types.String,
   },
+  postedBy: {
+    required: [true, "Poster is required. Please enter the poster."],
+    type: Schema.Types.String,
+  },
 });
 
 export const Job = mongoose.models.Job || mongoose.model("Job", jobSchema);

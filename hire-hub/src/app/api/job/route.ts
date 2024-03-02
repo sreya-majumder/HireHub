@@ -5,7 +5,8 @@ export async function POST(request: Request) {
   await connect();
   const payload = await request.json();
 
-  const { title, companyName, salary, location, description } = payload;
+  const { title, companyName, salary, location, description, postedBy } =
+    payload;
 
   try {
     const job = await Job.create({
@@ -14,6 +15,7 @@ export async function POST(request: Request) {
       salary: salary,
       location: location,
       description: description,
+      postedBy: postedBy,
     });
 
     return Response.json(
