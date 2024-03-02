@@ -17,6 +17,9 @@ export default function page() {
   const [newSkill, setNewSkill] = React.useState("");
   const [projectName, setProjectName] = React.useState("");
   const [projectAbout, setProjectAbout] = React.useState("");
+  const [role, setRole] = React.useState("");
+  const [company, setCompany] = React.useState("");
+  const [description, setDescription] = React.useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +51,29 @@ export default function page() {
     });
   }
 
+  async function handleSaveLocation() {
+    fetch("http://localhost:3000/api/my-profile/add-location", {
+      method: "POST",
+      body: JSON.stringify({
+        city: city,
+        country: country,
+        id: user.data?.user?._id,
+      }),
+    });
+  }
+
+  async function handleSaveJob() {
+    fetch("http://localhost:3000/api/my-profile/add-job", {
+      method: "POST",
+      body: JSON.stringify({
+        role: role,
+        company: company,
+        description: description,
+        id: user.data?.user?._id,
+      }),
+    });
+  }
+
   async function handleSaveSkill() {
     fetch("http://localhost:3000/api/my-profile/add-skill", {
       method: "POST",
@@ -67,6 +93,7 @@ export default function page() {
         <h3 className="text-3xl font-semibold">Location</h3>
         {userInfo && (
           <p className="text-lg">
+            
             {userInfo.city}
             {userInfo.country}
           </p>
@@ -90,7 +117,8 @@ export default function page() {
           <Button
             color="success"
             onClick={() => {
-              console.log(city, country);
+              console.log()
+              handleSaveLocation();
             }}
           >
             SAVE
@@ -98,13 +126,48 @@ export default function page() {
         </div>
       </div>
 
+
+
+      <div className="flex gap-2 max-w-screen-md items-center">
+          <Input
+            placeholder={role == "" && "Job Role"}
+            size="sm"
+            onChange={(e) => {
+              setRole(e.target.value);
+            }}
+          />
+          <Input
+            placeholder={company == "" && "Company"}
+            size="sm"
+            onChange={(e) => {
+              setCompany(e.target.value);
+            }}
+          />
+          <Input
+            placeholder={description == "" && "Description"}
+            size="sm"
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          />
+          <Button
+            color="success"
+            onClick={() => {
+              handleSaveJob();
+            }}
+          >
+            SAVE
+          </Button>
+        </div>
+  
+
       <div className="flex flex-col gap-3 py-4">
         <h3 className="text-3xl font-semibold">Skills</h3>
-        {userInfo &&
+        {/* {userInfo &&
           userInfo.skills &&
           userInfo.skills.map((skill) => (
             <p className="text-lg">{skill.name}</p>
-          ))}
+          ))} */}
 
         <div className="flex gap-2 max-w-screen-md items-center">
           <Input
@@ -118,7 +181,7 @@ export default function page() {
           <Button
             color="success"
             onClick={() => {
-              console.log(newSkill);
+              handleSaveSkill();
             }}
           >
             SAVE
@@ -128,14 +191,14 @@ export default function page() {
 
       <div className="flex flex-col gap-3 py-4">
         <h3 className="text-3xl font-semibold">Projects</h3>
-        {userInfo &&
+        {/* {userInfo &&
           userInfo.projects &&
           userInfoprojects.map((project) => (
             <div className="flex flex-col gap-2">
               <p className="text-lg">{project.name}</p>
               <p className="text-lg">{project.about}</p>
             </div>
-          ))}
+          ))} */}
 
         <div className="flex gap-2 max-w-screen-md items-center">
           <Input
