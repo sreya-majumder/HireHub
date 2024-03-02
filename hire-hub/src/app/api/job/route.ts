@@ -1,6 +1,8 @@
 import { Job } from "../../../models/Job";
+import { connect } from "@/database/mongo.config";
 
 export async function POST(request: Request) {
+  await connect();
   const payload = await request.json();
 
   const { title, companyName, salary, location, description } = payload;
