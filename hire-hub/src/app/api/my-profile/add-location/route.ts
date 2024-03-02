@@ -9,15 +9,19 @@ export async function POST(request: Request) {
     const user = await User.findById(payload.id);
 
     if (payload.city && payload.country) {
-      
-      const filter = { _id: payload.id };
-      const updateDoc = {
-        $set: {city :payload.city, country: payload.country} 
-      };
-   
-      await user.updateOne(filter, updateDoc);
-      // await user.updateOne({country :payload.country});
-      await user.save();
+      const user = await User.updateOne(
+        { _id: payload.id },
+        { $set: { city: payload.city, country: payload.country } }
+      );
+
+      // const filter = { _id: payload.id };
+      // const updateDoc = {
+      //   $set: {city :payload.city, country: payload.country}
+      // };
+
+      // await user.updateOne(filter, updateDoc);
+      // // await user.updateOne({country :payload.country});
+      // await user.save();
     }
 
     return Response.json({
