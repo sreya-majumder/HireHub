@@ -25,9 +25,18 @@ const jobSchema = new Schema({
     type: Schema.Types.String,
   },
   postedBy: {
-    required: [true, "Poster is required. Please enter the poster."],
     type: Schema.Types.String,
   },
+  applicants: [
+    {
+      fullName: String,
+      mobileNumber: String,
+      email: String,
+      location: String,
+      resumeLink: String,
+      applicantUserId: String,
+    },
+  ],
 });
 
 export const Job = mongoose.models.Job || mongoose.model("Job", jobSchema);

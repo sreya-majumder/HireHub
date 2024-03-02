@@ -14,7 +14,6 @@ import {
   Input,
   Modal,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   Textarea,
 } from "@nextui-org/react";

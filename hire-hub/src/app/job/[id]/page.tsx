@@ -1,3 +1,4 @@
+import ApplyJob from "@/components/ApplyJob";
 import axios from "axios";
 import { Metadata } from "next";
 
@@ -16,6 +17,7 @@ export default async function page({ params }: { params: { id: string } }) {
       <h3>Salary: {job.salary}</h3>
       <h3>Location: {job.location}</h3>
       <p className="text-lg font-normal">{job.description}</p>
+      <ApplyJob jobId={job._id} />
     </div>
   );
 }
