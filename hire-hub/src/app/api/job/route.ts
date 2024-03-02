@@ -5,8 +5,6 @@ export async function POST(request: Request) {
 
   const { title, companyName, salary, location, description } = payload;
 
-  console.log(title, companyName, salary, location, description);
-
   try {
     const job = await Job.create({
       title: title,
