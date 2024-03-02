@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { signOut, useSession } from "next-auth/react";
+import { Button } from "@nextui-org/react";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -58,35 +59,46 @@ export default function Home() {
           </nav>
         </div>
       </div>
-      <div className="h-screen flex justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+      <div className="h-screen flex flex-col gap-2 justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
         <div>
           <p className="text-4xl font-bold animate-appear text-black">
             Welcome to Jobify&nbsp;&nbsp;&nbsp;
           </p>
         </div>
-        <div>
-          <Link href="/register">
-            <button className="get_started-io-button">
-              Get Started
-              <div className="icon">
-                <svg
-                  height="24"
-                  width="24"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0h24v24H0z" fill="none">
-                    <Link href="/register">Get Started</Link>
-                  </path>
-                  <path
-                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-            </button>
-          </Link>
-        </div>
+        {session ? (
+          <div className="flex flex-col gap-4">
+            <Link
+              href={"/recruiter/job-post"}
+              className="text-5xl font-semibold text-white"
+            >
+              <h1>Are you a recruiter?</h1>
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link href="/register">
+              <button className="get_started-io-button">
+                Get Started
+                <div className="icon">
+                  <svg
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none">
+                      <Link href="/register">Get Started</Link>
+                    </path>
+                    <path
+                      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
 
       <footer className="footer">
