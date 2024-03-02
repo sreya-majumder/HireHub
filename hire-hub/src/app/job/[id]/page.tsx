@@ -1,7 +1,8 @@
 import ApplyJob from "@/components/ApplyJob";
 import axios from "axios";
 import { Metadata } from "next";
-
+import Link from "next/link";
+import styles from "@/style/job-post.module.css"
 export default async function page({ params }: { params: { id: string } }) {
   const response = await axios.get(
     `http://localhost:3000/api/job/${params.id}`
@@ -11,14 +12,43 @@ export default async function page({ params }: { params: { id: string } }) {
   const job = data.data;
 
   return (
-    <div className="min-h-screen flex flex-col p-12 bg-black text-white gap-4 text-4xl font-medium">
-      <h1 className=" text-5xl font-bold">{job.title}</h1>
-      <h2>Company: {job.companyName}</h2>
-      <h3>Salary: {job.salary}</h3>
-      <h3>Location: {job.location}</h3>
-      <p className="text-lg font-normal">{job.description}</p>
-      <ApplyJob jobId={job._id} />
+<>
+    <div className="bg-gray-900">
+    <div className="container mx-auto px-10">
+      <nav className="flex items-center justify-between py-4">
+        <div className="flex items-center flex-shrink-0 text-white mr-6">
+          <button className="search-button">
+            <div className="hoverEffect">
+              <Link href="/search">Search</Link>
+              <div></div>
+            </div>
+          </button>
+          <span className="w-5font-semibold text-xl tracking-tight">
+            &nbsp;&nbsp;&nbsp;<Link href="/">Jobify</Link>
+          </span>
+        </div>
+
+        <div className="hidden  md:flex md:items-center md:ml-auto md:mr--10 ">
+          <p className="text-gray-300 hover:text-white px-4">
+            <Link href="/">Home</Link>
+          </p>
+          <p className="text-gray-300 hover:text-white px-4">About</p>
+          <p className="text-gray-300 hover:text-white px-4">Services</p>
+          <p className="text-gray-300 hover:text-white px-4">Contact</p>
+
+        </div>
+      </nav>
     </div>
+  </div>
+
+    <div className="h-screen flex flex-col gap-2 justify-center items-center  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+      <div className={styles.form}>
+      <h1 className={styles.title}>Apply for {job.title}</h1>
+      <h2 className="text-black text-3xl">Basic Information</h2>
+      <h2 className="text-black text-2xl">Company: {job.companyName} &nbsp;&nbsp; Salary: {job.salary} &nbsp;&nbsp;  Location: {job.location}</h2>
+      <p className="text-lg text-black">Description: &nbsp;&nbsp;{job.description}</p>
+      <ApplyJob jobId={job._id} />
+    </div></div></>
   );
 }
 

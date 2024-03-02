@@ -7,7 +7,7 @@ type Inputs = {
   location: string;
   resumeLink: string;
 };
-
+import styles from "../style/job-post.module.css";
 import { Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -39,12 +39,14 @@ export default function ApplyJob({ jobId }: { jobId: string }) {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <form
+    
+    // <div className="flex flex-col gap-3">
+      <form 
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 max-w-screen-md"
+        
       >
         <Input
+          className={styles.input}
           type="text"
           placeholder="Full name"
           size="sm"
@@ -54,6 +56,7 @@ export default function ApplyJob({ jobId }: { jobId: string }) {
           <span className="text-red-400">This field is required</span>
         )}
         <Input
+          className={styles.input}
           type="text"
           placeholder="Mobile Number"
           size="sm"
@@ -67,6 +70,7 @@ export default function ApplyJob({ jobId }: { jobId: string }) {
         )}
 
         <Input
+          className={styles.input}
           type="email"
           placeholder="Email"
           size="sm"
@@ -80,6 +84,7 @@ export default function ApplyJob({ jobId }: { jobId: string }) {
         )}
 
         <Input
+          className={styles.input}
           type="text"
           placeholder="Location"
           size="sm"
@@ -92,6 +97,7 @@ export default function ApplyJob({ jobId }: { jobId: string }) {
           <span className="text-red-400">This field is required</span>
         )}
         <Input
+          className={styles.input}
           type="url"
           placeholder="Resume Link"
           size="sm"
@@ -103,10 +109,10 @@ export default function ApplyJob({ jobId }: { jobId: string }) {
         {errors.resumeLink && (
           <span className="text-red-400">This field is required</span>
         )}
-        <Button color="success" onClick={handleSubmit(onSubmit)}>
+        <Button className={styles.submit} onClick={handleSubmit(onSubmit)}>
           Apply
         </Button>
       </form>
-    </div>
+    // </div>
   );
 }

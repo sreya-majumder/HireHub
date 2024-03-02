@@ -185,16 +185,7 @@ export default function SignUp() {
                   }
                 />
 
-                <input
-                  autoComplete="off"
-                  placeholder="Role"
-                  className={styles.input_field}
-                  type="text"
-                  id="role"
-                  onChange={(e) =>
-                    setUserState({ ...userState, role: e.target.value })
-                  }
-                />
+
                 <Select
                   placeholder="Select Role"
                   className="max-w-xs bg-[#181818] text-white "
@@ -251,7 +242,7 @@ export default function SignUp() {
                   <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
                 </svg>
                 <input
-                  placeholder="Password"
+                  placeholder="Confrim Password"
                   className={styles.input_field}
                   type="password"
                   id="password"
