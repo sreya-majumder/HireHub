@@ -21,8 +21,9 @@ export async function POST(request: NextRequest) {
       const checkPassword = bcrypt.compareSync(output.password!, user.password);
       console.info("The checkpassword is", checkPassword);
       if (checkPassword) {
+        console.log(user)
         return NextResponse.json(
-          { status: 200, message: "Logged in successfully!" },
+          { status: 200, message: "Logged in successfully!", user },
           { status: 200 }
         );
       }
