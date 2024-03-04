@@ -34,12 +34,18 @@ export default function SignInOne() {
         console.log("The response is ", response);
         if (response.status == 200) {
           console.log("The user signed in", response);
-          signIn("credentials", {
-            email: authData.email,
-            password: authData.password,
-            callbackUrl: "/",
-            redirect: true,
-          });
+          const { user } = response;
+          if (user.role === "recruiter") {
+            router.push(`/recruiter/${user._id}/profile`);}
+          else if (user.role === "applicant"){
+            router.push(`/profile/${user._id}`);
+          }
+          // signIn("credentials", {
+          //   email: authData.email,
+          //   password: authData.password,
+          //   callbackUrl: "/",
+          //   redirect: true,
+          // });
         } else if (response.status == 400) {
           setError(response?.errors);
         }
