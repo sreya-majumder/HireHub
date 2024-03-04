@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 
-export default function page() {
+export default function MePage() {
   const user = useSession();
 
-  if (!user) {
-    return <h1>Please login</h1>;
-  }
+  
 
   const [userInfo, setuserInfo] = React.useState(undefined);
   const [city, setcity] = React.useState("");
@@ -21,6 +19,9 @@ export default function page() {
   const [company, setCompany] = React.useState("");
   const [description, setDescription] = React.useState("");
   
+  if (!user) {
+    return <h1>Please login</h1>;
+  }
 
 
   useEffect(() => {
