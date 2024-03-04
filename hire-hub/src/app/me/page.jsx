@@ -20,6 +20,8 @@ export default function page() {
   const [role, setRole] = React.useState("");
   const [company, setCompany] = React.useState("");
   const [description, setDescription] = React.useState("");
+  
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +81,18 @@ export default function page() {
       method: "POST",
       body: JSON.stringify({
         skillName: newSkill,
+        id: user.data?.user?._id,
+      }),
+    });
+  }
+
+
+  async function handleSaveLocation() {
+    fetch("http://localhost:3000/api/my-profile/add-location", {
+      method: "POST",
+      body: JSON.stringify({
+        city: city,
+        country: country,
         id: user.data?.user?._id,
       }),
     });

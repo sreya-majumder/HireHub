@@ -1,3 +1,55 @@
+// import {connect} from "@/database/mongo.config";
+// import {User} from "@/models/User";
+// import { NextRequest, NextResponse } from "next/server";
+// import bcryptjs from "bcryptjs";
+
+// connect()
+
+// export async function POST(request: NextRequest, response: NextResponse){
+//     try {
+//         const reqBody = await request.json()
+//         const {name, email, password, password_confirmation, city, country, number, age} = reqBody
+ 
+//         if (!name || !email || !password || password_confirmation ||!city || !country || !number || !age) {
+//             return NextResponse.json({ message: 'Please provide all required fields.' }, { status: 400 });
+//         }
+    
+//         const existingCandidate = await User.findOne({email})
+
+//         if(existingCandidate){
+//             return NextResponse.json({error: "Candidate already exists"}, {status: 400})
+//         }
+
+//         const salt = await bcryptjs.genSalt(10)
+//         const hashedPassword = await bcryptjs.hash(password, salt)
+
+//         const newUser = new User({
+//           name,
+//           email,
+//           password: hashedPassword,
+//           city,
+//           country,
+//           number,
+//           age
+//         })
+
+//         const savedCandidate = await newUser.save()
+        
+
+//         return NextResponse.json({
+//             message: "Candidate created successfully",
+//             success: true,
+//             savedCandidate
+//         })
+        
+//     } catch (error: any) {
+//         return NextResponse.json({error: error.message}, {status: 500})
+
+//     }
+// }
+
+
+
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/database/mongo.config";
 import { User } from "@/models/User";

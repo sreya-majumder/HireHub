@@ -2,6 +2,7 @@
 
 import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function UserProfile({ params }: any) {
   const [location, setlocation] = useState("");
@@ -41,6 +42,17 @@ export default function UserProfile({ params }: any) {
           Update Location
         </Button>
       </div>
+
+      <div className="flex flex-col gap-3 max-w-screen-sm py-4 ">
+        <Link href={`/recruiter/add-reco/${id}`} passHref>
+          <Button color="primary">Recommend</Button>
+        </Link>
+
+        <Link href={`/recommendations/${id}`} passHref>
+          <Button color="primary">Recommendations</Button>
+        </Link>
+      </div>
+
 
       {/* 
             Skills

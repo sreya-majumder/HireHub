@@ -1,4 +1,5 @@
 "use client";
+
 import styles from "../../../style/login.module.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -6,13 +7,15 @@ import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import Toast from "@/components/Toast";
+import { useRouter } from "next/navigation";
 
 export default function SignInOne() {
   const searchParam = useSearchParams();
+  const router = useRouter();
 
   const [authData, setAuthData] = useState({
     email: "",
-    password: "",
+    password: ""
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setError] = useState<LoginErrorType>();
@@ -141,6 +144,7 @@ export default function SignInOne() {
                     setAuthData({ ...authData, password: e.target.value })
                   }
                 />
+                
               </div>
               <div className={styles.btn}>
                 <button

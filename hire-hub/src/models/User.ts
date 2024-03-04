@@ -30,7 +30,7 @@ const userSchema = new Schema({
   role: {
     required: true,
     type: Schema.Types.String,
-    default: "User",
+    default: "Applicant",
   },
   reset_password_token: {
     required: false,
@@ -58,6 +58,15 @@ const userSchema = new Schema({
   },
   skills: {
     type: [{ name: String }],
+    required: false,
+  },
+  recommendations: {
+    type: [
+      {
+        recommendation: String,
+        recruiterName: String,
+      },
+    ],
     required: false,
   },
 });
