@@ -4,14 +4,14 @@ import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 
-export default function RecruiterReview({ params }: { params: { id: string } }) {
+export default function RecruiterReview({ params }) {
   const recId = params.id
   const [name, setName] = React.useState("");
   const [review, setReview] = React.useState("");
 
 
   async function handleSaveReview() {
-    fetch("http://localhost:3000/api/my-profile/add-location", {
+    fetch(`http://localhost:3000/api/recruiter/review/${recId}`, {
       method: "POST",
       body: JSON.stringify({
         name: name,
