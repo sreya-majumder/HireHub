@@ -1,15 +1,13 @@
 
 "use client"
 
-// pages/recruiter/applicants.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
 interface Applicant {
   _id: string;
-  name: string;
-  // Add other properties as needed
+  name: string; 
 }
 
 const Applicants: React.FC = () => {
@@ -41,7 +39,6 @@ const Applicants: React.FC = () => {
                 <span style={{ cursor: 'pointer' }}>{applicant.name}</span>
               </Link>
             </li>
-            // Add other properties as needed
           ))
         )}
       </ul>
