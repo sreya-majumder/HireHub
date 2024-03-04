@@ -4,10 +4,34 @@ import Link from "next/link";
 
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@nextui-org/react";
+import React, { useEffect } from "react";
+
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const user = useSession();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const userInformation = user.data?.user;
+      const userId = userInformation?._id;
+  
+      const response = await fetch(`http://localhost:3000/api/my-profile`, {
+        method: "POST",
+        body: JSON.stringify({ id: userId }),
+      });
+      const data = await response.json();
+  
+      // Store the user ID in a variable here
+      const storedUserId = userId;
+  
+      // Now you can use `storedUserId` as needed
+      console.log(storedUserId);
+    };
+    fetchData();
+  }, [user]);
 
+  
   return (
     <>
       <div className="bg-gray-900">
@@ -34,7 +58,8 @@ export default function Home() {
 
               {session ? (
                 <>
-                <p className="text-gray-300 hover:text-white px-4"><Link href="/me">Profile</Link></p>
+                {/* <p className="text-gray-300 hover:text-white px-4"><Link href={`/profile/${storedUserId}`}>Profile</Link></p> */}
+                
                 <button
                   className="button1"
                   onClick={() => {

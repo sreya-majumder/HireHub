@@ -6,6 +6,8 @@ import axios from "axios";
 interface Recruiter {
   name: string;
   email: string;
+  city: string;
+  country: string;
 }
 
 export default function RecruiterProfile({ params }: { params: { id: string } }) {
@@ -33,6 +35,9 @@ export default function RecruiterProfile({ params }: { params: { id: string } })
         <div>
           <p>Name: {recruiterData.name}</p>
           <p>Email: {recruiterData.email}</p>
+          <p>City: {recruiterData.city}</p>
+          <p>Country: {recruiterData.country}</p>
+
         </div>
       )}
     </div>

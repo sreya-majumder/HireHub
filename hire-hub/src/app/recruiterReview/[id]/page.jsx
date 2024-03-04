@@ -23,7 +23,7 @@ export default function RecruiterReview({ params }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
-      <h1 className="text-5xl font-semibold">
+      {/* <h1 className="text-5xl font-semibold">
         {user.data?.user?.name}'s Profile
       </h1>
       <div className="flex flex-col gap-3 py-4">
@@ -34,7 +34,7 @@ export default function RecruiterReview({ params }) {
             {userInfo.city}
             {userInfo.country}
           </p>
-        )}
+        )} */}
 
        
 
@@ -42,14 +42,14 @@ export default function RecruiterReview({ params }) {
 
       <div className="flex gap-2 max-w-screen-md items-center">
           <Input
-            placeholder={role == "" && "Name"}
+            // placeholder={role == "" && "Name"}
             size="sm"
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
           <Input
-            placeholder={company == "" && "Leave Your Review"}
+            // placeholder={company == "" && "Leave Your Review"}
             size="sm"
             onChange={(e) => {
               setReview(e.target.value);
@@ -66,7 +66,7 @@ export default function RecruiterReview({ params }) {
         </div>
   
       </div>
-    </div>
+    // </div>
   );
 
 }
