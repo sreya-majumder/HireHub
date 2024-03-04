@@ -35,17 +35,28 @@ export default function SignInOne() {
         if (response.status == 200) {
           console.log("The user signed in", response);
           const { user } = response;
-          if (user.role === "recruiter") {
-            router.push(`/recruiter/profile/${user._id}`);}
-          else if (user.role === "applicant"){
-            router.push(`/profile/${user._id}`);
+          // if (user.role === "recruiter") {
+          //   router.push(`/recruiter/${user._id}/profile`);}
+          // else if (user.role === "applicant"){
+          //   router.push(`/profile/${user._id}`);
+          // }
+        
+
+        var url="";
+        if (user.role === "recruiter") {
+            url= '/recruiter-home'}
+        else if (user.role === "applicant"){
+            url= '/applicant-home'
           }
-          // signIn("credentials", {
-          //   email: authData.email,
-          //   password: authData.password,
-          //   callbackUrl: "/",
-          //   redirect: true,
-          // });
+          signIn("credentials", {
+            email: authData.email,
+            password: authData.password,
+            callbackUrl: url,
+            redirect: true,
+          });
+
+
+
         } else if (response.status == 400) {
           setError(response?.errors);
         }
