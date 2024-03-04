@@ -69,20 +69,20 @@ export default function Home() {
             Welcome to Jobify&nbsp;&nbsp;&nbsp;
           </p>
         </div>
-        {session ? (
-          <div className="flex flex-col gap-4">
+
+          {/* <div className="flex flex-col gap-4">
             <Link
               href={"/recruiter/job-post"}
               className="text-5xl font-semibold text-white"
             >
               <h1>Are you a recruiter?</h1>
             </Link>
-          </div>
-        ) : (
-          <div>
-            <Link href="/register">
+          </div> */}
+
+<div>
+            <Link href="/recruiter/job-post">
               <button className="get_started-io-button">
-                Get Started
+                Post a Job
                 <div className="icon">
                   <svg
                     height="24"
@@ -91,7 +91,7 @@ export default function Home() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M0 0h24v24H0z" fill="none">
-                      <Link href="/register">Get Started</Link>
+                      <Link href="/recruiter/job-post">Post a Job</Link>
                     </path>
                     <path
                       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
@@ -102,7 +102,8 @@ export default function Home() {
               </button>
             </Link>
           </div>
-        )}
+
+
       </div>
 
       <footer className="footer">
