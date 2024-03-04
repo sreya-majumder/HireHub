@@ -31,9 +31,10 @@ export default function Home() {
               </p>
               <p className="text-gray-300 hover:text-white px-4">About</p>
               <p className="text-gray-300 hover:text-white px-4">Services</p>
-              <p className="text-gray-300 hover:text-white px-4">Contact</p>
 
               {session ? (
+                <>
+                <p className="text-gray-300 hover:text-white px-4"><Link href="/me">Profile</Link></p>
                 <button
                   className="button1"
                   onClick={() => {
@@ -43,6 +44,9 @@ export default function Home() {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </button>
+                
+                </>
+                
               ) : (
                 <>
                   <button className="button1">
