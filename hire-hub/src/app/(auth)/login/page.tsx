@@ -40,12 +40,22 @@ export default function SignInOne() {
           else if (user.role === "applicant"){
             router.push(`/profile/${user._id}`);
           }
-          // signIn("credentials", {
-          //   email: authData.email,
-          //   password: authData.password,
-          //   callbackUrl: "/",
-          //   redirect: true,
-          // });
+
+        var url="";
+        if (user.role === "recruiter") {
+            url= '/recruiter-home'}
+        else if (user.role === "applicant"){
+            url= '/applicant-home'
+          }
+          signIn("credentials", {
+            email: authData.email,
+            password: authData.password,
+            callbackUrl: url,
+            redirect: true,
+          });
+
+
+
         } else if (response.status == 400) {
           setError(response?.errors);
         }
