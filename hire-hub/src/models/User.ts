@@ -69,6 +69,15 @@ const userSchema = new Schema({
     ],
     required: false,
   },
+  recruiterReview: {
+    type: [
+      {
+        name : String,
+        review : String,
+      },
+    ],
+    required: false,
+  },
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
