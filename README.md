@@ -1,1 +1,1 @@
-#HireHub is an online job recruitement platform
+HireHub is an online job recruitement platform
