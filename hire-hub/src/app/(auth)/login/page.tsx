@@ -36,7 +36,7 @@ export default function SignInOne() {
           console.log("The user signed in", response);
           const { user } = response;
           if (user.role === "recruiter") {
-            router.push(`/recruiter/${user._id}/profile`);}
+            router.push(`/recruiter/profile/${user._id}`);}
           else if (user.role === "applicant"){
             router.push(`/profile/${user._id}`);
           }

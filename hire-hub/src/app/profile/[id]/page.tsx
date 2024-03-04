@@ -4,6 +4,11 @@ import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
 import Link from "next/link";
 
+interface Applicant {
+  name: string;
+  email: string;
+}
+
 export default function UserProfile({ params }: any) {
   const [location, setlocation] = useState("");
 
