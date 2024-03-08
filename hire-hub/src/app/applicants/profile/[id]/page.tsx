@@ -58,7 +58,6 @@ export default function RecruiterProfile({ params }: { params: { id: string } })
   return (
 
     <>
-    <title>User rofile</title>
     <div className="bg-gray-900">
       <div className="container mx-auto px-10">
         <nav className="flex items-center justify-between py-4">
@@ -90,7 +89,7 @@ export default function RecruiterProfile({ params }: { params: { id: string } })
                   signOut();
                 }}
               >
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link href="/">Sign Out</Link> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </button>
               

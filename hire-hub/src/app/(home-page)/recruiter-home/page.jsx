@@ -4,12 +4,38 @@ import Link from "next/link";
 
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@nextui-org/react";
+import React, { useEffect } from "react";
+
 
 export default function Home() {
+  const user = useSession();
   const { data: session, status } = useSession();
+  
+  const [stored, setstored] = React.useState(undefined);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userInformation = user.data?.user;
+      const userId = userInformation?._id;
+
+      const response = await fetch(`http://localhost:3000/api/my-profile`, {
+        method: "POST",
+        body: JSON.stringify({ id: userId }),
+      });
+      const data = await response.json();
+
+        setstored(userId);
+
+    };
+    fetchData();
+  }, [user]);
+  console.log(stored);
 
   return (
     <>
+
+    <title>Home</title>
+
       <div className="bg-gray-900">
         <div className="container mx-auto px-10">
           <nav className="flex items-center justify-between py-4">
@@ -30,19 +56,19 @@ export default function Home() {
                 <Link href="/">Home</Link>
               </p>
               <p className="text-gray-300 hover:text-white px-4">About</p>
-              <p className="text-gray-300 hover:text-white px-4">Services</p>
+              <p className="text-gray-300 hover:text-white px-4"><Link href='/recruiter/applicants'>Applicants</Link></p>
 
               {session ? (
                 <>
-                <p className="text-gray-300 hover:text-white px-4"><Link href="/me">Profile</Link></p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/profile/${stored}`}>Profile</Link></p>
                 <button
                   className="button1"
                   onClick={() => {
                     signOut();
                   }}
                 >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link href="/login">Sign Out</Link> 
+                  
                 </button>
                 
                 </>
@@ -103,12 +129,17 @@ export default function Home() {
             </Link>
           </div>
 
-
       </div>
+<div><Button color='success'> <Link href='/recruiter/applicants'></Link></Button></div>
+
+
+
 
       <footer className="footer">
         <p>Developed by Zawad, Rupkatha, Sreya</p>
       </footer>
+
+
     </>
   );
 }

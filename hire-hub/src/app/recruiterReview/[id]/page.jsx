@@ -38,9 +38,10 @@ export default function RecruiterReview({ params }) {
 
        
 
-
+<h3 className="text-3xl font-semibold">Provide Review of the recruiter</h3>
 
       <div className="flex gap-2 max-w-screen-md items-center">
+          
           <Input
             // placeholder={role == "" && "Name"}
             size="sm"

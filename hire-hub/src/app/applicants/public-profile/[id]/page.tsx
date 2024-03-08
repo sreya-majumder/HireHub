@@ -58,7 +58,6 @@ export default function RecruiterProfile({ params }: { params: { id: string } })
   return (
 
     <>
-    <title>User rofile</title>
     <div className="bg-gray-900">
       <div className="container mx-auto px-10">
         <nav className="flex items-center justify-between py-4">
@@ -90,7 +89,7 @@ export default function RecruiterProfile({ params }: { params: { id: string } })
                   signOut();
                 }}
               >
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link href="/">Sign Out</Link> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </button>
               
@@ -125,10 +124,13 @@ export default function RecruiterProfile({ params }: { params: { id: string } })
           <p className='border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300' >Number: {recruiterData.number}</p>
         </div>
       )}
+        <Link href={`/recruiter/add-reco/${id}`} passHref>
+          <Button color="primary">Recommend</Button>
+        </Link>
 
-        <Button color="success">
-            <Link href='/me'>Update Information</Link>
-          </Button>
+        <Link href={`/recommendations/${id}`} passHref>
+          <Button color="primary">Previous Recommendations</Button>
+        </Link>
     </div>
     </>
   );

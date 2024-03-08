@@ -32,23 +32,7 @@ export default function Home() {
               <p className="text-gray-300 hover:text-white px-4">About</p>
               <p className="text-gray-300 hover:text-white px-4">Services</p>
 
-              {session ? (
-                <>
-                <p className="text-gray-300 hover:text-white px-4"><Link href="/me">Profile</Link></p>
-                <button
-                  className="button1"
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </button>
-                
-                </>
-                
-              ) : (
-                <>
+
                   <button className="button1">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <Link href="/login">Sign In</Link>
@@ -57,8 +41,7 @@ export default function Home() {
                   <button className="button2">
                     <Link href="/register">Sign Up</Link>
                   </button>
-                </>
-              )}
+
             </div>
           </nav>
         </div>

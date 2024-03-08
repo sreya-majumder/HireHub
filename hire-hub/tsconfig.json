@@ -27,6 +27,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/me/page.jsx"
-  ],
+, "src/app/recruiter/profile/[id]/page.jsx", "src/app/(home-page)/recruiter-home/page.jsx", "src/app/(home-page)/applicant-home/page.jsx", "src/app/profile/[id]/page.jsx", "src/app/applicants/recruiter/page.jsx"  ],
   "exclude": ["node_modules"]
 }

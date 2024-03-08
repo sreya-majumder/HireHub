@@ -8,30 +8,31 @@ import React, { useEffect } from "react";
 
 
 export default function Home() {
-  const { data: session, status } = useSession();
   const user = useSession();
+  const { data: session, status } = useSession();
   
+  const [stored, setstored] = React.useState(undefined);
+
   useEffect(() => {
     const fetchData = async () => {
       const userInformation = user.data?.user;
       const userId = userInformation?._id;
-  
+
       const response = await fetch(`http://localhost:3000/api/my-profile`, {
         method: "POST",
         body: JSON.stringify({ id: userId }),
       });
       const data = await response.json();
-  
-      // Store the user ID in a variable here
-      const storedUserId = userId;
-  
-      // Now you can use `storedUserId` as needed
-      console.log(storedUserId);
+
+        setstored(userId);
+
     };
     fetchData();
   }, [user]);
 
+  console.log(stored);
   
+
   return (
     <>
       <div className="bg-gray-900">
@@ -54,11 +55,12 @@ export default function Home() {
                 <Link href="/">Home</Link>
               </p>
               <p className="text-gray-300 hover:text-white px-4">About</p>
-              <p className="text-gray-300 hover:text-white px-4">Services</p>
+              
 
               {session ? (
                 <>
-                {/* <p className="text-gray-300 hover:text-white px-4"><Link href={`/profile/${storedUserId}`}>Profile</Link></p> */}
+                <p className="text-gray-300 hover:text-white px-4"><Link href="/applicants/recruiter">Recruiters</Link></p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/profile/${stored}`}>Profile</Link></p>
                 
                 <button
                   className="button1"

@@ -12,7 +12,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       return NextResponse.json({ message: 'Invalid recruiter ID' }, { status: 400 });
     }
 
-    const recruiter = await User.findById(id, 'name email city country');
+    const recruiter = await User.findById(id, 'name email city country number');
 
     if (!recruiter) {
       return NextResponse.json({ message: 'Recruiter not found' }, { status: 404 });

@@ -6,11 +6,11 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
-    const applicants = await User.find({ role: 'applicant' }, "name");
+    const recruiters = await User.find({ role: 'recruiter' }, "name");
 
-    return NextResponse.json(applicants, { status: 200 });
+    return NextResponse.json(recruiters, { status: 200 });
   } catch (error: any) {
-    console.error('Error fetching applicant profiles:', error);
+    console.error('Error fetching recruiter profiles:', error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
