@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useEffect, useState } from 'react';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 
 interface Applicant {
   _id: string;
-  name: string; 
+  name: string;
 }
 
 const Applicants: React.FC = () => {
@@ -47,3 +46,4 @@ const Applicants: React.FC = () => {
 };
 
 export default Applicants;
+

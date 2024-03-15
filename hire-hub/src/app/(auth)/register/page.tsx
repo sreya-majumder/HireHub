@@ -7,21 +7,23 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Select, SelectItem } from "@nextui-org/react";
 
+
 export default function SignUp() {
   const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [userState, setUserState] = useState({
+    name:"",
     email: "",
     password: "",
-    name: "",
+    password_confirmation: "",
     age: "",
     city: "",
     country: "",
     number: "",
-    password_confirmation: "",
     role: "",
   });
+
 
   const [errors, setError] = useState<registerErrorType>({});
 
@@ -51,6 +53,7 @@ export default function SignUp() {
       callbackUrl: "/",
     });
   };
+  
 
   return (
     <>
@@ -113,6 +116,7 @@ export default function SignUp() {
                   className={styles.input_field}
                   type="text"
                   id="last"
+                  value = {userState.name}
                   onChange={(e) =>
                     setUserState({ ...userState, name: e.target.value })
                   }
@@ -136,6 +140,7 @@ export default function SignUp() {
                   className={styles.input_field}
                   type="text"
                   id="email"
+                  value = {userState.email}
                   onChange={(e) =>
                     setUserState({ ...userState, email: e.target.value })
                   }
@@ -160,6 +165,7 @@ export default function SignUp() {
                   className={styles.input_field}
                   type="text"
                   id="city"
+                  value = {userState.city}
                   onChange={(e) =>
                     setUserState({ ...userState, city: e.target.value })
                   }
@@ -170,6 +176,7 @@ export default function SignUp() {
                   className={styles.input_field}
                   type="text"
                   id="country"
+                  value = {userState.country}
                   onChange={(e) =>
                     setUserState({ ...userState, country: e.target.value })
                   }
@@ -180,8 +187,20 @@ export default function SignUp() {
                   className={styles.input_field}
                   type="text"
                   id="number"
+                  value = {userState.number}
                   onChange={(e) =>
                     setUserState({ ...userState, number: e.target.value })
+                  }
+                />
+                <input
+                  autoComplete="off"
+                  placeholder="Age"
+                  className={styles.input_field}
+                  type="text"
+                  id="age"
+                  value = {userState.age}
+                  onChange={(e) =>
+                    setUserState({ ...userState, age: e.target.value })
                   }
                 />
 
@@ -189,6 +208,7 @@ export default function SignUp() {
                 <Select
                   placeholder="Select Role"
                   className="max-w-xs bg-[#181818] text-white "
+                  value = {userState.role}
                   onChange={(e) => {
                     setUserState({ ...userState, role: e.target.value });
                     console.log(e.target.value);
@@ -221,6 +241,7 @@ export default function SignUp() {
                   className={styles.input_field}
                   type="password"
                   id="password"
+                  value = {userState.password}
                   onChange={(e) =>
                     setUserState({ ...userState, password: e.target.value })
                   }
@@ -242,10 +263,11 @@ export default function SignUp() {
                   <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
                 </svg>
                 <input
-                  placeholder="Confrim Password"
+                  placeholder="Confirm Password"
                   className={styles.input_field}
                   type="password"
                   id="password"
+                  value = {userState.password_confirmation}
                   onChange={(e) =>
                     setUserState({
                       ...userState,
@@ -272,6 +294,7 @@ export default function SignUp() {
               >
                 {loading ? "Processing..." : "Sign in with Github"}
               </button>
+
               <button className={styles.button3}>
                 <Link href="/login"> Already have an account? Sign In</Link>
               </button>
@@ -287,3 +310,4 @@ export default function SignUp() {
     </>
   );
 }
+

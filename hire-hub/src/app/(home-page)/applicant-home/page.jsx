@@ -60,7 +60,9 @@ export default function Home() {
               {session ? (
                 <>
                 <p className="text-gray-300 hover:text-white px-4"><Link href="/applicants/recruiter">Recruiters</Link></p>
-                <p className="text-gray-300 hover:text-white px-4"><Link href={`/profile/${stored}`}>Profile</Link></p>
+                {/* <p className="text-gray-300 hover:text-white px-4"><Link href={`/profile/${stored}`}>Profile</Link></p> */}
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/public-profile/${stored}`}>Public Profile</Link></p>
                 
                 <button
                   className="button1"
@@ -119,6 +121,30 @@ export default function Home() {
                   >
                     <path d="M0 0h24v24H0z" fill="none">
                       <Link href="/recruiter/job-post">Post a Job</Link>
+                    </path>
+                    <path
+                      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </Link>
+          </div>
+
+          <div>
+            <Link href={`/applicants/${stored}/job`}>
+              <button className="get_started-io-button">
+                View Jobs
+                <div className="icon">
+                  <svg
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none">
+                      <Link href={`/applicants/${stored}/job`}>View Jobs</Link>
                     </path>
                     <path
                       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"

@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/User'; 
 import { connect } from '@/database/mongo.config';

@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     resumeLink,
     jobId,
     applicantUserId,
+    
   } = payload;
 
   try {

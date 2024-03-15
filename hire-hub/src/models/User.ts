@@ -7,36 +7,50 @@ const userSchema = new Schema({
     type: Schema.Types.String,
   },
   email: {
-    required: [true, "Email is required.  Please Enter your email"],
+    required: [true, "Email is required.Please Enter your email"],
     type: Schema.Types.String,
     unique: true,
     trim: true,
   },
+
   password: {
     type: Schema.Types.String,
   },
+
   city: {
     type: Schema.Types.String,
   },
+
   country: {
       type: Schema.Types.String,
   },
+
   number: {
       type: Schema.Types.String,
   },
+
   age: {
       type: Schema.Types.String,
   },
+
   role: {
     required: true,
     type: Schema.Types.String,
     default: "Applicant",
   },
+  isVerified: {
+    required: true,
+    type: Schema.Types.Boolean,
+    default: false,
+  },
+  verifyToken: String,
+  verifyTokenExpiry: Date,
   reset_password_token: {
     required: false,
     type: Schema.Types.String,
     trim: true,
   },
+
   job: {
     type: [
       {
@@ -47,6 +61,7 @@ const userSchema = new Schema({
     ],
     required: false,
   },
+
   projects: {
     type: [
       {
@@ -56,10 +71,12 @@ const userSchema = new Schema({
     ],
     required: false,
   },
+
   skills: {
     type: [{ name: String }],
     required: false,
   },
+
   recommendations: {
     type: [
       {
@@ -78,6 +95,18 @@ const userSchema = new Schema({
     ],
     required: false,
   },
+
+  ratings: {
+    type: [
+      {
+        jobID: Schema.Types.ObjectId,
+        rating: Number,
+      },
+    ],
+    required: false,
+  },
 });
+
+
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

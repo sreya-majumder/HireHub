@@ -11,6 +11,7 @@ type Inputs = {
   salary: string;
   location: string;
   description: string;
+  skills: string;
 };
 import {
   Button,
@@ -38,8 +39,10 @@ export default function page() {
   const { data: sessionData } = session;
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const skillsArray = data.skills.split(',').map(skill => skill.trim());
     const response = await axios.post("/api/job", {
       ...data,
+      skills: skillsArray,
       postedBy: sessionData?.user?._id,
     });
 
@@ -177,6 +180,20 @@ export default function page() {
           {errors.salary && (
             <span className="text-red-400">This field is required</span>
           )}
+
+          <Textarea
+          className={styles.input}
+          placeholder="Preferred Skills (comma-separated)"
+          size="sm"
+          {...register("skills", {
+            required: true,
+            minLength: 2,
+          })}
+          />
+          {errors.skills && (
+            <span className="text-red-400">This field is required</span>
+          )}
+          
           <Button className={styles.submit} onClick={handleSubmit(onSubmit)}>
             Post Job
           </Button>

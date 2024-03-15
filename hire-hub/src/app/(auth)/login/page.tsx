@@ -6,12 +6,10 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { signIn } from "next-auth/react";
-import Toast from "@/components/Toast";
-import { useRouter } from "next/navigation";
+
 
 export default function SignInOne() {
   const searchParam = useSearchParams();
-  const router = useRouter();
 
   const [authData, setAuthData] = useState({
     email: "",
@@ -75,6 +73,8 @@ export default function SignInOne() {
     });
   };
 
+  
+  
   return (
     <>
       <html>
@@ -183,6 +183,8 @@ export default function SignInOne() {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </button>
 
+               
+                
                 <button className={styles.button3}>
                   <Link href="/register">Don't have an account? Sign Up</Link>
                 </button>

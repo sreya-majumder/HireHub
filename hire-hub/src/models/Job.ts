@@ -27,6 +27,9 @@ const jobSchema = new Schema({
   postedBy: {
     type: Schema.Types.String,
   },
+  skills: {
+    type: [Schema.Types.String], 
+  },
   applicants: [
     {
       fullName: String,
@@ -40,3 +43,4 @@ const jobSchema = new Schema({
 });
 
 export const Job = mongoose.models.Job || mongoose.model("Job", jobSchema);
+

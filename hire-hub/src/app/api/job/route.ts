@@ -1,11 +1,12 @@
 import { Job } from "../../../models/Job";
 import { connect } from "@/database/mongo.config";
+import { Stick_No_Bills } from "next/font/google";
 
 export async function POST(request: Request) {
   await connect();
   const payload = await request.json();
 
-  const { title, companyName, salary, location, description, postedBy } =
+  const { title, companyName, salary, location, description, postedBy, skills } =
     payload;
 
   try {
@@ -16,6 +17,7 @@ export async function POST(request: Request) {
       location: location,
       description: description,
       postedBy: postedBy,
+      skills: skills
     });
 
     return Response.json(
