@@ -5,7 +5,7 @@ import { registerSchema } from "@/validator/authValidationSchema";
 import vine, { errors } from "@vinejs/vine";
 import ErrorReporter from "@/validator/ErrorReporter";
 import bcrypt from "bcryptjs";
-import { sendEmail } from "@/emails/mailer";
+import { sendVerificationEmail } from "@/emails/mailer";
 
 interface UserPayload {
     email: "",
@@ -44,15 +44,22 @@ export async function POST(request: NextRequest) {
         const salt = bcrypt.genSaltSync(10);
         output.password = bcrypt.hashSync(output.password, salt);
         const savedUser = await User.create(output);
+        const verificationCode = generateVerificationCode();
+        savedUser.verificationCode = verificationCode
+        await savedUser.save()
+        await sendVerificationEmail(output.email, verificationCode);
         
-        await sendEmail({email, emailType: "VERIFY",  userId: savedUser._id})
-
         return NextResponse.json(
-          { status: 200, msg: "User Created successfully!" },
-          { status: 200 }
+          { status:200,
+            user: savedUser, 
+            msg: "User Created successfully!" 
+          },
+          { 
+            status: 200 
+          }
         );
 
-      }
+        }
     } catch (error) {
       return NextResponse.json({ error }, { status: 500 });
     }
@@ -65,3 +72,8 @@ export async function POST(request: NextRequest) {
     }
   }
 }
+
+const generateVerificationCode = () => {
+    return Math.random().toString(36).substring(7);
+};
+

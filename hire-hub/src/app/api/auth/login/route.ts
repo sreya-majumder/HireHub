@@ -6,8 +6,6 @@ import { loginSchema } from "@/validator/authValidationSchema";
 import { User } from "@/models/User";
 import bcrypt from "bcryptjs";
 
-
-
 connect();
 
 export async function POST(request: NextRequest) {
@@ -17,6 +15,7 @@ export async function POST(request: NextRequest) {
     const validator = vine.compile(loginSchema);
     const output = await validator.validate(body);
     const user = await User.findOne({ email: output.email });
+    
     if (user) {
       const checkPassword = bcrypt.compareSync(output.password!, user.password);
       console.info("The checkpassword is", checkPassword);
@@ -47,6 +46,7 @@ export async function POST(request: NextRequest) {
         { status: 200 }
       );
     }
+  
   } catch (error) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(

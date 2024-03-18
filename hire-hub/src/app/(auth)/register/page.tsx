@@ -36,8 +36,12 @@ export default function SignUp() {
         setLoading(false);
         console.log("The response is", res.data);
         const response = res.data;
+        const user = response.user;
+        const id = user._id;
+        console.log(id)
         if (response.status == 200) {
-          router.push(`/login?message=${response.msg}`);
+          router.push(`/verify-email/${id}`);
+          // router.push(`/login?message=${response.msg}`);
         } else if (response?.status == 400) {
           setError(response?.errors);
         } else {

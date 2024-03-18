@@ -6,10 +6,11 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { signIn } from "next-auth/react";
-
+import { useRouter } from "next/navigation";
 
 export default function SignInOne() {
   const searchParam = useSearchParams();
+  const router = useRouter();
 
   const [authData, setAuthData] = useState({
     email: "",
@@ -17,6 +18,7 @@ export default function SignInOne() {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setError] = useState<LoginErrorType>();
+
 
   useEffect(() => {
     console.log("The query is", searchParam.get("error"));
@@ -29,7 +31,13 @@ export default function SignInOne() {
       .then((res) => {
         setLoading(false);
         const response = res.data;
-        console.log("The response is ", response);
+        console.log(response)
+        const { user } = response;
+        if (user.isVerified!==true){
+          console.log("Please Verify First")
+          router.push("not-verified")
+        }else{
+          console.log("The response is ", response);
         if (response.status == 200) {
           console.log("The user signed in", response);
           const { user } = response;
@@ -52,11 +60,9 @@ export default function SignInOne() {
             callbackUrl: url,
             redirect: true,
           });
-
-
-
         } else if (response.status == 400) {
           setError(response?.errors);
+        }
         }
       })
       .catch((err) => {

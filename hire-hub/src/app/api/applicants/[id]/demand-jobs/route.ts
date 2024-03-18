@@ -25,5 +25,5 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       console.error('Error fetching jobs:', error);
       return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
     }
-  }
+}
   

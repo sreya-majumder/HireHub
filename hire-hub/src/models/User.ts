@@ -43,8 +43,9 @@ const userSchema = new Schema({
     type: Schema.Types.Boolean,
     default: false,
   },
-  verifyToken: String,
-  verifyTokenExpiry: Date,
+  verificationCode: {
+    type: Schema.Types.String,
+  },
   reset_password_token: {
     required: false,
     type: Schema.Types.String,
