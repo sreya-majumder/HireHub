@@ -108,7 +108,7 @@ export default function Home() {
             </Link>
           </div> */}
 
-          <div>
+          {/* <div>
             <Link href="/recruiter/job-post">
               <button className="get_started-io-button">
                 Post a Job
@@ -130,7 +130,7 @@ export default function Home() {
                 </div>
               </button>
             </Link>
-          </div>
+          </div> */}
 
           <div>
             <Link href={`/applicants/${stored}/suggested-jobs`}>

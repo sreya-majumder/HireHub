@@ -5,23 +5,22 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-export default function AddRecommendation({ params }: any) {
+export default function AddRecommendation({ params }: { params: { recruiterId: string, applicantId: string } }) {
   const [recommendation, setRecommendation] = useState("");
   const [recruiterName, setRecruiterName] = useState("");
   const [loading, setLoading] = useState(false);
-  const { id } = params;
+  const { recruiterId, applicantId } = params;
   const router = useRouter();
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(`/api/recruiter/${id}/add-reco`, {
+      const response = await axios.post(`/api/recruiter/add-reco/${recruiterId}/${applicantId}`, {
         recommendation,
-        recruiterName,
       });
       console.log(response.data);
       setRecommendation("");
       setRecruiterName("");
-      router.push(`/profile/${id}`);
+      router.push(`http://localhost:3000/recruiter/${recruiterId}/applicants`);
     } catch (error) {
       console.error("Error adding recommendation:", error);
     } finally {
@@ -39,12 +38,6 @@ export default function AddRecommendation({ params }: any) {
           value={recommendation}
           onChange={(e:any) => setRecommendation(e.target.value)}
           placeholder="Enter recommendation text"
-        />
-        <Input
-          type="text"
-          value={recruiterName}
-          onChange={(e:any) => setRecruiterName(e.target.value)}
-          placeholder="Enter your name"
         />
         <button onClick={handleSubmit} disabled={loading}>
           {loading ? "Adding Recommendation..." : "Add Recommendation"}

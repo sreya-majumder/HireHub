@@ -3,19 +3,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { Button } from '@nextui-org/react';
+
 
 interface Applicant {
   _id: string;
   name: string;
 }
-
-const Applicants: React.FC = () => {
+export default function Applicants({ params }: any) {
+  const { id } = params;
+  //const Applicants: React.FC = () => {
   const [applicants, setApplicants] = useState<Applicant[]>([]);
 
   useEffect(() => {
     const fetchApplicants = async () => {
       try {
-        const response = await axios.get('/api/recruiter/applicants');
+        const response = await axios.get(`/api/recruiter/${id}/applicants`);
         setApplicants(response.data);
       } catch (error) {
         console.error('Error fetching applicants:', error);
@@ -35,7 +38,11 @@ const Applicants: React.FC = () => {
           applicants.map((applicant) => (
             <li key={applicant._id}>
               <Link href={`/applicants/public-profile/${applicant._id}`}>
-                <span style={{ cursor: 'pointer' }}>{applicant.name}</span>
+                <span style={{ cursor: 'pointer', marginRight: '10px' }}>{applicant.name}</span>
+              </Link>
+
+              <Link href={`/recruiter/add-reco/${id}/${applicant._id}`} passHref>
+                <Button color="secondary">Recommend</Button>
               </Link>
             </li>
           ))
@@ -45,5 +52,4 @@ const Applicants: React.FC = () => {
   );
 };
 
-export default Applicants;
 

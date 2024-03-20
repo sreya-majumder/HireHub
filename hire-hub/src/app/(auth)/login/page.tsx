@@ -33,11 +33,11 @@ export default function SignInOne() {
         const response = res.data;
         console.log(response)
         const { user } = response;
-        if (user.isVerified!==true){
-          console.log("Please Verify First")
-          router.push("not-verified")
-        }else{
-          console.log("The response is ", response);
+        // if (user.isVerified!==true){
+        //   console.log("Please Verify First")
+        //   router.push("not-verified")
+        // }else{
+        console.log("The response is ", response);
         if (response.status == 200) {
           console.log("The user signed in", response);
           const { user } = response;
@@ -63,7 +63,7 @@ export default function SignInOne() {
         } else if (response.status == 400) {
           setError(response?.errors);
         }
-        }
+        // }
       })
       .catch((err) => {
         setLoading(false);

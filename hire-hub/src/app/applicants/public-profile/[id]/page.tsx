@@ -139,11 +139,12 @@ export default function ApplicantProfile({
           </div>
         )}
 
-        <Link href={`/recruiter/add-reco/${params.id}`} passHref>
+        {/* <Link href={`/recruiter/add-reco/${params.id}`} passHref>
           <Button color="primary">Recommend</Button>
-        </Link>
-
-        <Link href={`/recommendations/${params.id}`} passHref>
+        </Link> */}
+        
+        <Link href={`/applicants/view-reco/${params.id}`}>
+        {/* <Link href={`/recommendations/${params.id}`} passHref> */}
           <Button color="primary">Previous Recommendations</Button>
         </Link>
       </div>

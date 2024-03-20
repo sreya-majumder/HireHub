@@ -56,7 +56,7 @@ export default function Home() {
                 <Link href="/">Home</Link>
               </p>
               <p className="text-gray-300 hover:text-white px-4">About</p>
-              <p className="text-gray-300 hover:text-white px-4"><Link href='/recruiter/applicants'>Applicants</Link></p>
+              <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/${stored}/applicants`}>Applicants</Link></p>
 
               {session ? (
                 <>
