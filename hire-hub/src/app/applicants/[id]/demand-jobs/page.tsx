@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Button } from "@nextui-org/react";
 import Link from 'next/link';
 
+import NavSigned from '@/components/NavSigned';
+
 interface Job {
   _id: string;
   title: string;
@@ -37,8 +39,12 @@ const JobList: React.FC<JobListProps> = ({ params }) => {
     }, []);
 
   return (
+    <>
+
+    <NavSigned />
+    <div className="h-screen  bg-gradient-to-r text-black bg-clip-text animate-gradient">
     <div>
-      <h1>High Demand Jobs</h1>
+      <h1 className=''>High Demand Jobs</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -60,6 +66,8 @@ const JobList: React.FC<JobListProps> = ({ params }) => {
         ))
       )}
     </div>
+  </div>
+  </>
   );
 };
 

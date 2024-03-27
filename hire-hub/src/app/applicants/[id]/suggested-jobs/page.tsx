@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { Button } from "@nextui-org/react";
+import NavSigned from '@/components/NavSigned';
 
 interface Job {
   _id: string;
@@ -38,6 +39,10 @@ const JobList: React.FC<JobListProps> = ({ params }) => {
   }, []);
 
   return (
+    <>
+    <NavSigned />
+
+    <div className="h-screen  bg-gradient-to-r text-black bg-clip-text animate-gradient">
     <div>
       <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
         <h1>Suggested Jobs</h1>
@@ -49,7 +54,7 @@ const JobList: React.FC<JobListProps> = ({ params }) => {
         {jobs.map((job) => (
           <div
             key={job._id}
-            style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '100%' }}
+            style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '99%' }}
           >
             <h2>{job.title}</h2>
             <p>Company: {job.companyName}</p>
@@ -67,6 +72,8 @@ const JobList: React.FC<JobListProps> = ({ params }) => {
         ))}
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

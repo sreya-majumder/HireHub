@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { Button } from "@nextui-org/react";
+import NavSigned from '@/components/NavSigned';
 
 interface Job {
   _id: string;
@@ -32,6 +33,8 @@ const JobList: React.FC<JobListProps> = ({ params}) => {
     { label: 'All Salaries', min: null, max: null },
     { label: '15 - 25', min: 15, max: 25 },
     { label: '25 - 35', min: 25, max: 35 },
+    { label: '35 - 50', min: 35, max: 50 },
+    { label: '50 - 100', min: 50, max: 100 },
   ];
 
   useEffect(() => {
@@ -53,21 +56,29 @@ const JobList: React.FC<JobListProps> = ({ params}) => {
 
 
 return (
+
+  <>
+
+  <NavSigned />
+  <div className="h-screen  bg-gradient-to-r text-black bg-clip-text animate-gradient">
   <div>
+  
+  <article className="md:grid grid-cols-4 gap-2 ">
     {/* Search Bar */}
     <input
       type="text"
+      className='search '
       placeholder="Search by Title"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
-      style={{ marginBottom: '10px', width: '100%' }}
+      style={{ marginBottom: '10px', width: '150%' }}
     />
 
     {/* Location Filter */}
     <select
       value={locationFilter}
       onChange={(e) => setLocationFilter(e.target.value)}
-      style={{ marginBottom: '10px', width: '100%' }}
+      style={{ marginBottom: '10px', width: '50%', marginLeft: '60%'}}
     >
       <option value="">All Locations</option>
       <option value="Dhaka">Dhaka</option>
@@ -81,7 +92,7 @@ return (
     <select
       value={selectedSkill}
       onChange={(e) => setSelectedSkill(e.target.value)}
-      style={{ marginBottom: '10px', width: '100%' }}
+      style={{ marginBottom: '10px,', width: '50%', marginLeft: '10%'}}
     >
       <option value="">All Skills</option>
       <option value="Nodejs">Nodejs</option>
@@ -103,12 +114,13 @@ return (
           setMaxSalary(null);
         }
       }}
-      style={{ marginBottom: '10px', width: '100%' }}
+      style={{ marginBottom: '10px', width: '50%', marginLeft: '-40%'}}
     >
       {salaryRangeOptions.map(option => (
         <option key={option.label} value={option.label}>{option.label}</option>
       ))}
     </select>
+    </article>
 
     {/* Job Listings */}
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
@@ -118,7 +130,7 @@ return (
         filteredJobs.map((job) => (
           <div
             key={job._id}
-            style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '100%' }}
+            style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '99%' }}
           >
             <h2>{job.title}</h2>
             <p>Company: {job.companyName}</p>
@@ -137,6 +149,9 @@ return (
       )}
     </div>
   </div>
+  </div>
+
+  </>
 );
 };
 
