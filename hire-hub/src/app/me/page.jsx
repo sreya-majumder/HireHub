@@ -100,6 +100,15 @@ export default function MePage() {
     });
   }
 
+  async function handleDisabled() {
+    fetch("http://localhost:3000/api/my-profile/disable-account", {
+      method: "POST",
+      body: JSON.stringify({
+        id: user.data?.user?._id,
+      }),
+    });
+  }
+
   return (
 
     <>
@@ -190,6 +199,7 @@ export default function MePage() {
               setcountry(e.target.value);
             }}
           />
+          <Link href="/" >
           <Button
             color="success"
             onClick={() => {
@@ -199,6 +209,7 @@ export default function MePage() {
           >
             SAVE
           </Button>
+          </Link>
         </div>
       </div>
 
@@ -306,6 +317,17 @@ export default function MePage() {
             SAVE
           </Button>
         </div>
+        <div className="flex gap-2 max-w-screen-md items-center">
+        <Button
+            color="success"
+            onClick={() => {
+              handleDisabled();
+            }}
+          >
+            Disable Account
+          </Button>
+        </div> 
+        
       </div>
     </div>
     </div>
