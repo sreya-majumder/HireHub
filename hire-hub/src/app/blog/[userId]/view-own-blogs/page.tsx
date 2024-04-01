@@ -54,10 +54,14 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                     <Button color="primary">Previous Comments</Button>
                   </Link>
                 </div>
-                {/* <p>
-                    <Button color="primary">Comment</Button>
-                </p> */}
-                
+                <div style={{ marginBottom: '10px' }}> 
+                <Link href={`/blog/${userId}/${blog._id}/edit-blog`}>
+                  <Button color="primary">Edit</Button>
+                </Link>
+                </div>
+              <div style={{ marginBottom: '10px' }}>
+                <Button color="primary">Delete</Button>
+              </div>
             </li>
           ))}
         </ul>
