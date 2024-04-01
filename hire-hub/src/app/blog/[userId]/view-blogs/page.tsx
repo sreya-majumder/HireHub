@@ -56,9 +56,6 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                     <Button color="primary">Previous Comments</Button>
                   </Link>
                 </div>
-                {/* <p>
-                    <Button color="primary">Comment</Button>
-                </p> */}
                 
             </li>
           ))}
