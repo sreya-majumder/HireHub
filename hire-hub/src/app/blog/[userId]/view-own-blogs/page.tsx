@@ -25,6 +25,22 @@ export default function Blogs({ params }: { params: { userId: string } }) {
     };
     fetchBlogs();
   }, []);
+  
+  const handleDelete = async (blogId: string) => {
+    setLoading(true);
+    try {
+      const response = await axios.delete(`/api/blog/${userId}/${blogId}/delete-blog`);
+      if (response.status === 200) {
+        setBlogs(prevBlogs => prevBlogs.filter(blog => blog._id !== blogId));
+      } else {
+        console.error("Failed to delete blog");
+      }
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white p-12">
@@ -60,7 +76,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                 </Link>
                 </div>
               <div style={{ marginBottom: '10px' }}>
-                <Button color="primary">Delete</Button>
+                <Button color="primary" onClick={() => handleDelete(blog._id)}>Delete</Button>
               </div>
             </li>
           ))}

@@ -49,6 +49,8 @@ export default function EditBlog({ params }: { params: { userId: string, blogId:
     }
   };
 
+  
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
       <h1 className="text-5xl font-semibold">Edit Blog</h1>
