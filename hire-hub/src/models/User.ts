@@ -106,6 +106,9 @@ const userSchema = new Schema({
     ],
     required: false,
   },
+  disabled: {
+    type: Schema.Types.Boolean,
+  }
 });
 
 
