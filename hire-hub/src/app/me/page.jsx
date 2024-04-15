@@ -322,9 +322,10 @@ export default function MePage() {
             color="success"
             onClick={() => {
               handleDisabled();
+              console.log(user.data?.user?._id)
             }}
           >
-            Disable Account
+            Delete Account
           </Button>
         </div> 
         
