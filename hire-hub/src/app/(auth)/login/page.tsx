@@ -54,6 +54,8 @@ export default function SignInOne() {
         else if (user.role === "applicant"){
             url= '/applicant-home'
           }
+        else if (user.role === "admin"){
+          url= '/admin-home'}
           signIn("credentials", {
             email: authData.email,
             password: authData.password,

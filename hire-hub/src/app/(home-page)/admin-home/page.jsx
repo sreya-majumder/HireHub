@@ -29,7 +29,7 @@ export default function Home() {
     };
     fetchData();
   }, [user]);
-  // console.log(stored);
+  console.log(stored);
 
   return (
     <>
@@ -55,10 +55,8 @@ export default function Home() {
               <p className="text-gray-300 hover:text-white px-4">
                 <Link href="/">Home</Link>
               </p>
-              <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/${stored}/add-complaint`}>Report</Link></p>
-              <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/${stored}/view-my-complaints`}>View my report</Link></p>
-
-              <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/${stored}/applicants`}>Applicants</Link></p>
+              <p className="text-gray-300 hover:text-white px-4">admin</p>
+              <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/view-complaints`}>Applicants</Link></p>
 
               {session ? (
                 <>
