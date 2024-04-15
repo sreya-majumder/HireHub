@@ -5,12 +5,20 @@ import { connect } from '@/database/mongo.config';
 
 connect();
 
-export async function GET(request: NextRequest,{ params } : { params: { commentBy: string, blogId: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { commentBy: string, blogId: string } }) {
     try {
         const { commentBy, blogId } = params;
-        const blogs = await Blog.findById(blogId);
+        
+        // Retrieve the blog using its ID
+        const blog = await Blog.findById(blogId);
 
-        const comments = blogs.comments
+        if (!blog) {
+            return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
+        }
+
+        const blogText = blog.blogText;
+
+        const comments = blog.comments;
 
         const userNamePromises = comments.map(async (comment: { commentBy: any; }) => {
             const user = await User.findById(comment.commentBy);
@@ -24,10 +32,9 @@ export async function GET(request: NextRequest,{ params } : { params: { commentB
             userName: userNames[index]
         }));
 
-
-        return NextResponse.json({ message: 'Comments retrieved successfully', comments: commentsWithUserNames }, { status: 200 });
+        return NextResponse.json({ message: 'Comments retrieved successfully', blogText : blogText, comments: commentsWithUserNames }, { status: 200 });
     } catch (error: any) {
-        console.error('Error retrieving blogs:', error);
+        console.error('Error retrieving blog and comments:', error);
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
     }
 }
