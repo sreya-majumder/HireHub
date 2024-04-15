@@ -29,7 +29,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
 
   return (
 
-
+    <>
     <div className="h-full flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
       <div>
       <NavSigned />
@@ -47,8 +47,8 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                   </Link>
                 </div> 
                
-                {/* <p className="mt-2" style={{ color: 'black' }}>{blog.blogText}</p>
-                <p className="text-gray-500 mt-2">
+                <p className="mt-2" style={{ color: 'black' }}>{blog.blogText}</p>
+                <p className="text-black mt-2">
                     Posted by: {blog.userName}
                 </p>
                 <p className="text-black mt-2">
@@ -57,7 +57,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                 <p className="text-black mt-2">
                     Time: {new Date(blog.createdAt).toLocaleTimeString()}
                 </p>
-                <div style={{ marginBottom: '10px' }}>
+                {/* <div style={{ marginBottom: '10px' }}>
                   <Link href={`/blog/comment/${userId}/${blog._id}/post-comment`}>
                     <Button color="primary">Post Comment</Button>
                   </Link>
@@ -66,8 +66,8 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                   <Link href={`/blog/comment/${userId}/${blog._id}/view-comments`}>
                     <Button color="primary">Previous Comments</Button>
                   </Link>
-                </div>  */}
-                
+                </div> 
+                 */}
             </li>
           ))}
         </ul>
@@ -76,7 +76,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
     </div>
 
 
-
+</>
 
     // <div className="container mx-auto px-4 py-8">
     //     <h1 className="text-4xl font-bold mb-8 text-center">All Blogs</h1>

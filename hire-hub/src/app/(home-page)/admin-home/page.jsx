@@ -56,7 +56,7 @@ export default function Home() {
                 <Link href="/">Home</Link>
               </p>
               <p className="text-gray-300 hover:text-white px-4">admin</p>
-              <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/view-complaints`}>Applicants</Link></p>
+              <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/view-complaints`}>Reports</Link></p>
 
               {session ? (
                 <>

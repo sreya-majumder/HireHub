@@ -18,8 +18,8 @@ export async function POST(request: Request) {
 
     await User.deleteOne({_id : userId})
     await Job.deleteMany( {postedBy:userId } );
-    
-    return Response.json({ redirectTo: '/' });
+
+    return Response.json({ message: 'account deleted successfully' }, { status: 200 });
  
   } catch (error) {
     console.log(error);
