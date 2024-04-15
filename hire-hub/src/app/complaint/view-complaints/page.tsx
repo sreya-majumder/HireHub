@@ -5,8 +5,7 @@ import axios from "axios";
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 
-export default function Complaints({ params }: { params: { userId: string } }) {
-  const { userId } = params;
+export default function AllComplaints() {
 
   const [loading, setLoading] = useState(false);
   const [complaints, setcomplaints] = useState<any[]>([]);
@@ -15,7 +14,7 @@ export default function Complaints({ params }: { params: { userId: string } }) {
     const fetchComplaints = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/complaint/${userId}/view-my-complaints`);
+        const response = await axios.get(`/api/complaint/view-complaints`);
         setcomplaints(response.data.complaints.reverse());
       } catch (error) {
         console.error("Error fetching feedbacks:", error);
@@ -38,7 +37,7 @@ export default function Complaints({ params }: { params: { userId: string } }) {
                 <p className="mt-2">{complaint.content}</p>
                
                 <p className="text-gray-500 mt-2">
-                    Creation Date: {new Date(complaint.createdAt).toLocaleDateString()} 
+                    Post Date: {new Date(complaint.createdAt).toLocaleDateString()} 
                 </p>
                 <p className="text-gray-500 mt-2">
                     Time: {new Date(complaint.createdAt).toLocaleTimeString()}
