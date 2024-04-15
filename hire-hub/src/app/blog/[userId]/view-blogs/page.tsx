@@ -35,8 +35,13 @@ export default function Blogs({ params }: { params: { userId: string } }) {
         <ul>
           {blogs.map((blog, index) => (
             <li key={index} className="mb-8">
-                <h2 className="text-2xl font-semibold">{blog.blogTopic}</h2>
-                <p className="mt-2">{blog.blogText}</p>
+                <div style={{ marginBottom: '10px' }}>
+                  <Link href={`/blog/comment/${userId}/${blog._id}/view-comments`}>
+                    <h2 className="text-2xl font-semibold">{blog.blogTopic}</h2>
+                    {/* <Button color="primary">Previous Comments</Button> */}
+                  </Link>
+                </div>
+                {/* <p className="mt-2">{blog.blogText}</p>
                 <p className="text-gray-500 mt-2">
                     Posted by: {blog.userName}
                 </p>
@@ -55,7 +60,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
                   <Link href={`/blog/comment/${userId}/${blog._id}/view-comments`}>
                     <Button color="primary">Previous Comments</Button>
                   </Link>
-                </div>
+                </div> */}
                 
             </li>
           ))}
