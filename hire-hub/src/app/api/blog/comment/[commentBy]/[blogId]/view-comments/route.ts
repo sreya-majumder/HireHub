@@ -9,13 +9,13 @@ export async function GET(request: NextRequest, { params }: { params: { commentB
     try {
         const { commentBy, blogId } = params;
         
-        // Retrieve the blog using its ID
         const blog = await Blog.findById(blogId);
 
         if (!blog) {
             return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
         }
         const blogTopic= blog.blogTopic;
+        console.log(blogTopic)
         const blogText = blog.blogText;
 
         const comments = blog.comments;

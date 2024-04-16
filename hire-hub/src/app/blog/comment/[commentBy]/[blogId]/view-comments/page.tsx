@@ -22,7 +22,7 @@ export default function BlogComments({ params }: { params: { commentBy: string, 
       setLoading(true);
       try {
         const response = await axios.get(`/api/blog/comment/${commentBy}/${blogId}/view-comments`);
-        const { blogText, comments } = response.data;
+        const { blogTopic, blogText, comments } = response.data;
         setBlogTopic(blogTopic);
         setBlogText(blogText);
         setComments(comments.reverse());
@@ -59,7 +59,7 @@ export default function BlogComments({ params }: { params: { commentBy: string, 
     <div className="text-white p-3 ">
 
 
-      <h1 className="text-5xl font-semibold mb-8">Blog Topic</h1>
+      <h1 className="text-5xl font-semibold mb-8">{blogTopic}</h1>
       {loading ? (
         <p>Loading ...</p>
       ) : (
