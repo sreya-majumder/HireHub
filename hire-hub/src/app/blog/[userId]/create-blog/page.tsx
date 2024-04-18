@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import NavSigned from "@/components/NavSigned";
+import NavBlogs from "@/components/navbar/NavBlogs";
 import styles from "../../../../style/post-blog.module.css"
 export default function CreateBlog({ params }: { params: { userId: string } }) {
   const { userId } = params;
@@ -40,7 +40,10 @@ export default function CreateBlog({ params }: { params: { userId: string } }) {
   }
 
   return (
-    <div className="h-full flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient"><NavSigned />
+    <>
+    <title>Post Blog</title>
+    <div className="h-full flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+    <NavBlogs />
 
     <div className={styles.form_container}>
       <form className={styles.form}>
@@ -66,7 +69,7 @@ export default function CreateBlog({ params }: { params: { userId: string } }) {
       </form>
     </div>
     </div>
-
+    </>
   );
 }
 

@@ -57,12 +57,13 @@ export default function EditBlog({ params }: { params: { userId: string, blogId:
       <div className="flex flex-col gap-3 max-w-screen-sm py-4">
         <Input
           type="text"
+          className="text-black"
           value={blogTopic}
           onChange={(e) => setBlogTopic(e.target.value)}
           placeholder="Enter new blog topic"
         />
-        <Input
-          type="text"
+        <textarea
+          className="text-black"
           value={blogText}
           onChange={(e) => setBlogText(e.target.value)}
           placeholder="Enter new blog text"

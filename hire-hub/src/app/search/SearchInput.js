@@ -1,6 +1,7 @@
 "use client"
 import React, {useState} from 'react'
 import searchResult from './searchResult'
+import Link from 'next/link'
 
 const SearchInput = () => {
     const [resultArr, setResultArr] = useState([])
@@ -23,7 +24,7 @@ const SearchInput = () => {
         <div class="border-l-2 border-gray-500 pl-8">
         <div class="flex flex-col md:flex-row md:justify-between">
             <div class="mb-4 md:mb-0">
-                <h3 class="text-black text-xl font-bold mb-2">Name: {element.name}</h3>
+                <h3 class="text-black text-xl font-bold mb-2"><Link href={`/applicants/public-profile/${element._id}`}>Name: {element.name}</Link></h3>
                 <p class="text-black text-sm">City: {element.city}</p>
             </div>
             <p class="text-black">Email: {element.email}</p>

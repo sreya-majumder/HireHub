@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from '@nextui-org/react';
 import Link from 'next/link';
-import NavSigned from "@/components/NavSigned";
+import NavBlogs from "@/components/navbar/NavBlogs";
+import extra from '../../../../style/extra.module.css';
 
 export default function Complaints({ params }: { params: { userId: string } }) {
   const { userId } = params;
@@ -28,11 +28,13 @@ export default function Complaints({ params }: { params: { userId: string } }) {
   }, []);
 
   return (
-
+    <><title>My Feedback</title>
     <div className="h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
-  <NavSigned />
+  <NavBlogs />
     <div className="flex flex-col p-12">
       <h1 className="text-5xl text-white font-semibold mb-8">My Complaints</h1>
+      <button className={extra.complaint}><Link href={`/complaint/${userId}/add-complaint`}>Submit Complaint</Link> </button>
+
       {loading ? (
         <p>Loading feedbackss...</p>
       ) : (
@@ -55,5 +57,6 @@ export default function Complaints({ params }: { params: { userId: string } }) {
       )}
     </div>
     </div>
+    </>
   );
 }
