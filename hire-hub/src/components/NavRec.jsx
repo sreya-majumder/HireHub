@@ -63,7 +63,7 @@ export default function NavRec() {
               {session ? (
                 <>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/profile/${stored}`}>Profile</Link></p>
-                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/public-profile/${stored}`}>Public Profile</Link></p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/public-profile/${stored}`}>Public Profile</Link></p>
                 <button
                   className="button1"
                   onClick={() => {
