@@ -5,7 +5,7 @@ import axios from "axios";
 import { Input, Button } from '@nextui-org/react';
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
-import NavSigned from "@/components/NavSigned";
+import NavBlogs from "@/components/navbar/NavBlogs";
 
 export default function BlogComments({ params }: { params: { commentBy: string, blogId: string } }) {
   const { commentBy, blogId } = params;
@@ -55,8 +55,10 @@ export default function BlogComments({ params }: { params: { commentBy: string, 
   };
   
   return (
+    <>
+    <title>{blogTopic}</title>
     <div className="h-screen flex flex-col gap-2  bg-slate-800 text-transparent">
-    <NavSigned />
+    <NavBlogs />
     <div className="text-white p-3 ">
 
 
@@ -93,39 +95,17 @@ export default function BlogComments({ params }: { params: { commentBy: string, 
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCommentText(e.target.value)}
           placeholder="Enter your comment"
         />
-
           <Button onClick={handleSubmit} isLoading={loading} disabled={!commentText}>
           {loading ? "Adding Comment..." : "Add Comment"}
         </Button></div>
-
-
-          {/* <div style={{ marginBottom: '10px' }}>
-                  <Link href={`/blog/comment/${commentBy}/${blogId}/post-comment`}>
-                    <Button color="primary">Post Comment</Button>
-                  </Link>
-                </div> */}
         </>
       )}
 
 
-{/* <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
-      <h1 className="text-5xl font-semibold">Add Comment</h1>
-      <div className="flex flex-col gap-3 max-w-screen-sm py-4">
-        <Input
-          type="text"
-          value={commentText}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCommentText(e.target.value)}
-          placeholder="Enter your comment"
-        />
-        <Button onClick={handleSubmit} isLoading={loading} disabled={!commentText}>
-          {loading ? "Adding Comment..." : "Add Comment"}
-        </Button>
-      </div>
-    </div> */}
     </div>
 
     </div>
-
+    </>
     
   );
 }

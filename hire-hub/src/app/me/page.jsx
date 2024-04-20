@@ -112,6 +112,8 @@ export default function MePage() {
   return (
 
     <>
+
+    <title>Update Information</title>
     <div className="bg-gray-900">
       <div className="container mx-auto px-10">
         <nav className="flex items-center justify-between py-4">
@@ -138,7 +140,7 @@ export default function MePage() {
 
             {session ? (
               <>
-              <p className="text-gray-300 hover:text-white px-4"><Link href="/me">Profile</Link></p>
+              <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/profile/${user.data?.user?._id}`}>Profile</Link></p>
               <button
                 className="button1"
                 onClick={() => {

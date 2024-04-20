@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import NavRec from "@/components/NavRec";
 
 export default function Recommendations({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);
@@ -23,20 +24,33 @@ export default function Recommendations({ params }: { params: { id: string } }) 
   }, [id]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
-      <h1 className="text-5xl font-semibold">Recommendations</h1>
+    <>
+
+    <NavRec />
+
+    <div className="flex flex-col gap-2 min-h-screen bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+
+      <h1 className="text-5xl text-black font-semibold mt-4 p-4">Recommendations</h1>
       {loading ? (
         <p>Loading recommendations...</p>
       ) : (
         <ul>
+          <div className="flex flex col bg-purple-200 border border-gray-400 rounded ml-2 mr-2 mt-2 p-3">
           {recommendations.map((recommendation, index) => (
             <li key={index}>
-              <p>{recommendation.recommendation}</p>
-              <p>Recruiter: {recommendation.recruiterName}</p>
+              
+              <p className="text-black text-l">{recommendation.recruiterName} : {recommendation.recommendation}</p>
+              <p className="text-black text-l"></p>
+              
             </li>
+            
           ))}
+          </div>
         </ul>
       )}
     </div>
+
+
+    </>
   );
 }

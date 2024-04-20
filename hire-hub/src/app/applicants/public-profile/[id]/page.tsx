@@ -6,6 +6,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import styles from "@/style/job-post.module.css";
 import { Button } from "@nextui-org/react";
+import ProfileBlog from "@/components/ProfileBlog";
 
 interface Applicant {
   name: string;
@@ -53,6 +54,27 @@ export default function ApplicantProfile({
     };
     fetchData();
   }, [user]);
+
+
+  const [loading, setLoading] = useState(false);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
+  const { id } = params;
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/api/reco/${id}`);
+        setRecommendations(response.data.recommendations.reverse());
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRecommendations();
+  }, [id]);
+  console.log(applicantData);
 
   return (
     <>
@@ -111,16 +133,18 @@ export default function ApplicantProfile({
           </nav>
         </div>
       </div>
-      <div className="h-screen flex flex-col gap-2 justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+
+
+
+<div className="h-full flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+  <div className="flex flex col border border-gray-300 rounded p-4">
         {applicantData && (
-          <div className={styles.form}>
-            <h1 className="text-5xl text-black justify-center items-center text-center font-semibold">
-              {applicantData.name}'s Profile
+          <div className="rounded-lg shadow-lg bg-purple-100 p-6 mt-6 w-1/2">
+            <h1 className="text-5xl text-black font-semibold">
+              {applicantData.name}
             </h1>
 
-            <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-              Name: {applicantData.name}
-            </p>
+            <article className="md:grid grid-cols-3 gap-4 p-3">
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Email: {applicantData.email}
             </p>
@@ -130,24 +154,66 @@ export default function ApplicantProfile({
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Country: {applicantData.country}
             </p>
+            </article>
+            <article className="md:grid grid-cols-2 gap-4 p-3">
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Number: {applicantData.number}
             </p>
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Skills: {renderSkills(applicantData.skills)}
             </p>
-          </div>
-        )}
 
-        {/* <Link href={`/recruiter/add-reco/${params.id}`} passHref>
+            </article>
+          
+
+            
+        
+        
+        <div className="flex flex-row gap-4 p-3">
+        <Link href={`/recruiter/add-reco/${stored}/${params.id}`} passHref>
           <Button color="primary">Recommend</Button>
-        </Link> */}
+        </Link>
         
         <Link href={`/applicants/view-reco/${params.id}`}>
         {/* <Link href={`/recommendations/${params.id}`} passHref> */}
-          <Button color="primary">Previous Recommendations</Button>
+          <Button color="primary">View All Recommendations</Button>
         </Link>
+        </div>
       </div>
+      )} 
+
+
+      <div className="rounded-lg shadow-lg bg-purple-100 p-6 mt-6 ml-2 w-1/2">
+
+      
+      <h1 className="text-black text-5xl font-semibold">Recommendations</h1>
+      {loading ? (
+        <p>Loading recommendations...</p>
+      ) : (
+        <ul>
+          <div className="flex flex col border border-gray-400 rounded mt-2">
+          {recommendations.map((recommendation, index) => (
+            <li key={index}>
+              
+              <p className="text-black text-l">{recommendation.recruiterName} : {recommendation.recommendation}</p>
+              <p className="text-black text-l"></p>
+              
+            </li>
+            
+          ))}
+          </div>
+        </ul>
+      )}
+
+      </div>
+      </div>
+      
+      <h1 className="text-black text-3xl font-bold">Blogs</h1>
+      <ProfileBlog params={params} />
+
+      </div>
+    
+
     </>
   );
 }
