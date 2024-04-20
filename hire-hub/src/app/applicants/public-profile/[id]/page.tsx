@@ -15,10 +15,20 @@ interface Applicant {
   country: string;
   number: string;
   skills: Skill[];
+  projects : Project[];
+  job: Job[]
 }
 
 interface Skill {
   name: string;
+}
+
+interface Project {
+  name: string;
+}
+
+interface Job {
+  role : string
 }
 
 
@@ -162,6 +172,12 @@ export default function ApplicantProfile({
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Skills: {renderSkills(applicantData.skills)}
             </p>
+            <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
+              Projects: {renderProjects(applicantData.projects)}
+            </p>
+            <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
+              Jobs: {renderJobs(applicantData.job)}
+            </p>
 
             </article>
           
@@ -224,6 +240,26 @@ function renderSkills(skills: (string | Skill)[]) {
       return skill;
     } else {
       return skill.name;
+    }
+  }).join(", ");
+}
+
+function renderProjects(projects: (string | Project)[]) {
+  return projects.map((project) => {
+    if (typeof project === "string") {
+      return project;
+    } else {
+      return project.name;
+    }
+  }).join(", ");
+}
+
+function renderJobs(jobs: (string | Job)[]) {
+  return jobs.map((job) => {
+    if (typeof job === "string") {
+      return job;
+    } else {
+      return job.role;
     }
   }).join(", ");
 }
