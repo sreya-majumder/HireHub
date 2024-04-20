@@ -39,20 +39,21 @@ export default function BlogComments({ params }: { params: { commentBy: string, 
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await axios.post(`/api/blog/comment/${commentBy}/${blogId}/post-comment`, {
+      const response = await axios.post(`/api/blog/comment/${commentBy}/${blogId}/post-comment`, {
         commentText,
       });
-
-      // Redirect to the blog page after successfully adding the comment
-      // router.push(`/blog/${commentBy}/view-blogs`);
+      const updatedBlog = response.data.blog;
+      setComments(updatedBlog.comments.reverse()); 
+      setCommentText("");
+      // Optionally, you can redirect the user to the blog page after successfully adding the comment
+      // router.push(`/blog/comment/${commentBy}/${blogId}/view-comments`);
     } catch (error) {
       console.error("Error adding comment:", error);
     } finally {
       setLoading(false);
     }
   };
-  console.log('hh'+postedBy)
-
+  
   return (
     <div className="h-screen flex flex-col gap-2  bg-slate-800 text-transparent">
     <NavSigned />

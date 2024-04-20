@@ -15,7 +15,6 @@ export async function GET(request: NextRequest, { params }: { params: { commentB
             return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
         }
         const blogTopic= blog.blogTopic;
-        console.log(blogTopic)
         const blogText = blog.blogText;
 
         const comments = blog.comments;
