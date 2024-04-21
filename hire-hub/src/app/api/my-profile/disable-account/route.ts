@@ -1,6 +1,6 @@
 import { User } from "../../../../models/User";
 import { Blog } from "@/models/Blog";
-
+import { Job } from "@/models/Job";
 import { connect } from "@/database/mongo.config";
 
 export async function POST(request: Request) {
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   const userId = payload.id; 
   console.log('user is '+payload.userId)
     await Blog.deleteMany( {postedBy:userId } );
-
+    await Job.deleteMany( {postedBy:userId } );
     await User.deleteOne({_id : userId})
 
     return Response.json({ message: 'account deleted successfully' }, { status: 200 });
