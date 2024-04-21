@@ -30,6 +30,7 @@ export async function POST(request: NextRequest, { params }: { params: { userId:
         await newComplaint.save();
 
         return NextResponse.json({ message: 'Feedback posted successfully', Complaint: newComplaint }, { status: 200 });
+        
     } catch (error: any) {
         console.error('Error posting blog:', error);
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
