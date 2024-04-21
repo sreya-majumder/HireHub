@@ -16,12 +16,23 @@ interface Applicant {
   country: string;
   number: string;
   skills: Skill[];
+  projects : Project[];
+  job: Job[]
 }
 
 interface Skill {
   name: string;
 }
 
+interface Project {
+  name: string;
+
+}
+
+interface Job {
+  role : string
+  company : string
+}
 
 export default function ApplicantProfile({
   params,
@@ -86,12 +97,18 @@ export default function ApplicantProfile({
 
 
 
-<div className="flex flex-col gap-2 min-h-screen bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
-  <div className="flex flex col border border-gray-300 rounded p-4">
+    <div className="min-h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+<div className="flex flex col border border-gray-300 rounded p-4 ml-3 mr-3 mt-3">
         {applicantData && (
           <div className="rounded-lg shadow-lg bg-purple-100 p-6 mt-6 w-1/2">
-            <h1 className="text-5xl text-black font-semibold">
+            <h1 className="text-5xl text-black font-semibold ml-3">
               {applicantData.name}
+            </h1>
+            <h1 className="text-xl text-black font-semibold ml-3">
+            {renderJobs(applicantData.job)}
+            </h1>
+            <h1 className="text-xl text-black font-semibold ml-3">
+            {renderOrgan(applicantData.job)}
             </h1>
 
             <article className="md:grid grid-cols-3 gap-4 p-3">
@@ -108,9 +125,6 @@ export default function ApplicantProfile({
             <article className="md:grid grid-cols-2 gap-4 p-3">
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Number: {applicantData.number}
-            </p>
-            <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-              Skills: {renderSkills(applicantData.skills)}
             </p>
 
             </article>
@@ -159,7 +173,7 @@ export default function ApplicantProfile({
       </div>
       </div>
       
-      <h1 className="text-black text-3xl font-bold">Blogs</h1>
+      
       <ProfileBlog params={params} />
 
       </div>
@@ -169,12 +183,25 @@ export default function ApplicantProfile({
   );
 }
 
-function renderSkills(skills: (string | Skill)[]) {
-  return skills.map((skill) => {
-    if (typeof skill === "string") {
-      return skill;
+
+
+function renderJobs(jobs: (string | Job)[]) {
+  return jobs.map((job) => {
+    if (typeof job === "string") {
+      return job;
     } else {
-      return skill.name;
+      return job.role;
     }
   }).join(", ");
 }
+
+function renderOrgan(jobs: (string | Job)[]) {
+  return jobs.map((job) => {
+    if (typeof job === "string") {
+      return job;
+    } else {
+      return job.company;
+    }
+  }).join(", ");
+}
+

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
+import Nav from "@/components/Nav";
+import NavSigned from "@/components/NavSigned";
 
 export default function Blogs({ params }: { params: { userId: string } }) {
   const { userId } = params;
@@ -43,45 +45,42 @@ export default function Blogs({ params }: { params: { userId: string } }) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white p-12">
-      <h1 className="text-5xl font-semibold mb-8">Blogs</h1>
+    <>
+    <title>My Blogs</title>
+    <NavSigned />
+    <div className="min-h-screen flex flex-col gap-2 bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+      <h1 className="text-5xl font-semibold ">Blogs</h1>
+
+      
       {loading ? (
         <p>Loading blogs...</p>
       ) : (
         <ul>
           {blogs.map((blog, index) => (
             <li key={index} className="mb-8">
-                <h2 className="text-2xl font-semibold">{blog.blogTopic}</h2>
-                <p className="mt-2">{blog.blogText}</p>
-               
-                <p className="text-gray-500 mt-2">
-                    Creation Date: {new Date(blog.createdAt).toLocaleDateString()} 
-                </p>
-                <p className="text-gray-500 mt-2">
-                    Time: {new Date(blog.createdAt).toLocaleTimeString()}
-                </p>
-                <div style={{ marginBottom: '10px' }}>
-                  <Link href={`/blog/comment/${userId}/${blog._id}/post-comment`}>
-                    <Button color="primary">Post Comment</Button>
-                  </Link>
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <Link href={`/blog/comment/${userId}/${blog._id}/view-comments`}>
-                    <Button color="primary">Previous Comments</Button>
-                  </Link>
-                </div>
-                <div style={{ marginBottom: '10px' }}> 
+              <div className="border border-gray-300 rounded p-4 ml-3 mr-3 mt-3">
+                <h2 className="text-2xl font-semibold text-black"><Link href={`/blog/comment/${userId}/${blog._id}/view-comments`}>{blog.blogTopic}</Link></h2>
+                <p className="text-black mt-2 font-semibold">Posted on {new Date(blog.createdAt).toLocaleDateString()},  {new Date(blog.createdAt).toLocaleTimeString()}</p>
+                <p className="mt-2 text-justify text-xl text-black">{blog.blogText}</p>
+                
+
+                <div className="flex flex-row mt-3"> 
                 <Link href={`/blog/${userId}/${blog._id}/edit-blog`}>
                   <Button color="primary">Edit</Button>
                 </Link>
+
+                <Button className="ml-2" color="primary" onClick={() => handleDelete(blog._id)}>Delete</Button>
                 </div>
-              <div style={{ marginBottom: '10px' }}>
-                <Button color="primary" onClick={() => handleDelete(blog._id)}>Delete</Button>
-              </div>
+                </div>
             </li>
           ))}
         </ul>
+        
       )}
+      
     </div>
+
+    </>
+
   );
 }

@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import { Button } from "@nextui-org/react";
 import React, { useEffect } from "react";
 import NavRec from "@/components/NavRec";
-
+import Bot from "@/components/bot";
 
 export default function Home() {
   const user = useSession();
@@ -131,7 +131,7 @@ export default function Home() {
 
 
 
-
+      <Bot />
 
 
       <footer className="footer">

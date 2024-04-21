@@ -33,6 +33,7 @@ export default function AddRecommendation({ params }: { params: { recruiterId: s
   return (
 
     <>
+    <title>Recommend</title>
 
     <NavRec />
 

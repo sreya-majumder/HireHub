@@ -48,7 +48,7 @@ export default function page() {
 
     if (response.status == 200) {
       setjobCreated(true);
-      router.push("/job/" + response.data.data._id);
+      router.push("/recruiter-home");
     }
   };
 

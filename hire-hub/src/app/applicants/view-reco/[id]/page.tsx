@@ -35,17 +35,17 @@ export default function Recommendations({ params }: { params: { id: string } }) 
         <p>Loading recommendations...</p>
       ) : (
         <ul>
-          <div className="flex flex col bg-purple-200 border border-gray-400 rounded ml-2 mr-2 mt-2 p-3">
+          
           {recommendations.map((recommendation, index) => (
             <li key={index}>
-              
+              <div className="flex flex col bg-purple-200 border border-gray-400 rounded ml-2 mr-2 mt-2 p-3">
               <p className="text-black text-l">{recommendation.recruiterName} : {recommendation.recommendation}</p>
               <p className="text-black text-l"></p>
-              
+              </div>
             </li>
             
           ))}
-          </div>
+
         </ul>
       )}
     </div>

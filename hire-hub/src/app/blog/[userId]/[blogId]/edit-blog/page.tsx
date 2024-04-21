@@ -5,6 +5,10 @@ import axios from "axios";
 import { Input, Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
+import styles from "../../../../../style/post-blog.module.css"
+import NavBlogs from "@/components/navbar/NavBlogs";
+import NavSigned from "@/components/NavSigned";
+
 export default function EditBlog({ params }: { params: { userId: string, blogId: string } }) {
   const router = useRouter();
   const { userId, blogId } = params;
@@ -52,30 +56,76 @@ export default function EditBlog({ params }: { params: { userId: string, blogId:
   
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
-      <h1 className="text-5xl font-semibold">Edit Blog</h1>
-      <div className="flex flex-col gap-3 max-w-screen-sm py-4">
-        <Input
-          type="text"
-          className="text-black"
+
+
+    <>
+    <title>Post Blog</title>
+    <div className="h-full flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+    <NavSigned />
+
+    <div className={styles.form_container}>
+      <form className={styles.form}>
+        <div className={styles.form_group}>
+          <label htmlFor="blogTopic">Edit Blog topic</label>
+          <input  
+          name="blogTopic" 
+          id="blogTopic" 
+          type="text" 
           value={blogTopic}
           onChange={(e) => setBlogTopic(e.target.value)}
           placeholder="Enter new blog topic"
-        />
-        <textarea
-          className="text-black"
+          />
+        </div>
+        <div className={styles.form_group}>
+          <label className="mt-20" htmlFor="textarea" >Edit Your Blog Here</label>
+          <textarea  
           value={blogText}
-          onChange={(e) => setBlogText(e.target.value)}
           placeholder="Enter new blog text"
-        />
+          onChange={(e) => setBlogText(e.target.value)} 
+          id="textarea" 
+          name="textarea"></textarea>
+        </div>
+
         <Button
-          color="success"
+          className={styles.form_submit_btn}
           onClick={handleUpdateBlog}
           disabled={!blogTopic || !blogText || loading}
         >
           {loading ? "Updating..." : "Update Blog"}
         </Button>
-      </div>
+
+
+      </form>
     </div>
+    </div>
+
+    {/* className={styles.form_submit_btn} */}
+    </>
+
+    // <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
+    //   <h1 className="text-5xl font-semibold">Edit Blog</h1>
+    //   <div className="flex flex-col gap-3 max-w-screen-sm py-4">
+    //     <Input
+    //       type="text"
+    //       className="text-black"
+    //       value={blogTopic}
+    //       onChange={(e) => setBlogTopic(e.target.value)}
+    //       placeholder="Enter new blog topic"
+    //     />
+    //     <textarea
+    //       className="text-black"
+    //       value={blogText}
+    //       onChange={(e) => setBlogText(e.target.value)}
+    //       placeholder="Enter new blog text"
+    //     />
+        // <Button
+        //   color="success"
+        //   onClick={handleUpdateBlog}
+        //   disabled={!blogTopic || !blogText || loading}
+        // >
+        //   {loading ? "Updating..." : "Update Blog"}
+        // </Button>
+    //   </div>
+    // </div>
   );
 }

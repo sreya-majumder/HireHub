@@ -50,16 +50,10 @@ export default function NavSigned() {
               <p className="text-gray-300 hover:text-white px-4">
                 <Link href="/">Home</Link>
               </p>
-              <p className="text-gray-300 hover:text-white px-4">About</p>
-              
-
-
-
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/${stored}/add-complaint`}>Report</Link></p>
                 <p className="text-gray-300 hover:text-white px-4"><Link href="/applicants/recruiter">Recruiters</Link></p>
-                {/* <p className="text-gray-300 hover:text-white px-4"><Link href={`/profile/${stored}`}>Profile</Link></p> */}
-                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>
-                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/public-profile/${stored}`}>Public Profile</Link></p>
-                
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/blog/${stored}/view-blogs`}>Blogs</Link></p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>           
                 <button
                   className="button1"
                   onClick={() => {
