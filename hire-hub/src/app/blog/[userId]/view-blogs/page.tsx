@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from '@nextui-org/react';
 import Link from 'next/link';
-import NavBlogs from "@/components/navbar/NavBlogs";
 import extra from '../../../../style/extra.module.css';
 import NavSigned from "@/components/NavSigned";
+import Bot from "@/components/bot";
+
 
 export default function Blogs({ params }: { params: { userId: string } }) {
   const { userId } = params;
@@ -70,6 +70,8 @@ export default function Blogs({ params }: { params: { userId: string } }) {
       )}
       </div>
       </div>
+
+      <Bot />
   </div>
   </>
 

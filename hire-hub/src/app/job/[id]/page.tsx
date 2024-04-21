@@ -24,18 +24,14 @@ export default async function page({ params }: { params: { id: string } }) {
             </div>
           </button>
           <span className="w-5font-semibold text-xl tracking-tight">
-            &nbsp;&nbsp;&nbsp;<Link href="/">Jobify</Link>
+            &nbsp;&nbsp;&nbsp;<Link href="/applicant-home">Jobify</Link>
           </span>
         </div>
 
         <div className="hidden  md:flex md:items-center md:ml-auto md:mr--10 ">
           <p className="text-gray-300 hover:text-white px-4">
-            <Link href="/">Home</Link>
+            <Link href="/applicant-home">Home</Link>
           </p>
-          <p className="text-gray-300 hover:text-white px-4">About</p>
-          <p className="text-gray-300 hover:text-white px-4">Services</p>
-          <p className="text-gray-300 hover:text-white px-4">Contact</p>
-
         </div>
       </nav>
     </div>

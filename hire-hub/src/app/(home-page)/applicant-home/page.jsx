@@ -61,7 +61,7 @@ export default function Home() {
               <h1>Are you a recruiter?</h1>
             </Link>
           </div> */}
-
+{/* 
           <div>
             <Link href="/recruiter/job-post">
               <button className="get_started-io-button">
@@ -84,9 +84,9 @@ export default function Home() {
                 </div>
               </button>
             </Link>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <Link href={`/applicants/${stored}/suggested-jobs`}>
               <button className="get_started-io-button">
                 View Suggested Jobs
@@ -108,31 +108,7 @@ export default function Home() {
                 </div>
               </button>
             </Link>
-          </div>
-
-          <div>
-            <Link href={`/applicants/${stored}/demand-jobs`}>
-              <button className="get_started-io-button">
-                View Demanding Jobs
-                <div className="icon">
-                  <svg
-                    height="24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M0 0h24v24H0z" fill="none">
-                      <Link href={`/applicants/${stored}/demand-jobs`}>View Demanding Jobs</Link>
-                    </path>
-                    <path
-                      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
-                </div>
-              </button>
-            </Link>
-          </div>
+          </div> */}
 
 
           <div>
@@ -147,7 +123,7 @@ export default function Home() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M0 0h24v24H0z" fill="none">
-                      <Link href={`/applicants/${stored}/job`}>View Jobs</Link>
+                      <Link href={`/applicants/${stored}/job`}>Apply Now</Link>
                     </path>
                     <path
                       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
@@ -159,7 +135,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div>
+          {/* <div>
             <Link href={`/blog/${stored}/view-blogs`}>
               <button className="get_started-io-button">
                 View Blogs
@@ -181,7 +157,7 @@ export default function Home() {
                 </div>
               </button>
             </Link>
-          </div>
+          </div> */}
 
 
       <Bot />

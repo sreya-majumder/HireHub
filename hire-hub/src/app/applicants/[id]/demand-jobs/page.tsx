@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from "@nextui-org/react";
 import Link from 'next/link';
-
 import NavSigned from '@/components/NavSigned';
 
 interface Job {

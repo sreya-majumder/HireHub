@@ -6,6 +6,7 @@ import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 import Nav from "@/components/Nav";
 import NavSigned from "@/components/NavSigned";
+import Bot from "@/components/bot";
 
 export default function Blogs({ params }: { params: { userId: string } }) {
   const { userId } = params;
@@ -78,6 +79,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
         
       )}
       
+      <Bot />
     </div>
 
     </>
