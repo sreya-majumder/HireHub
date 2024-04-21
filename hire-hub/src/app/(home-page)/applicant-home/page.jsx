@@ -69,15 +69,11 @@ export default function Home() {
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/public-profile/${stored}`}>Public Profile</Link></p>
                 
-                <button
-                  className="button1"
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </button>
+                <button className="button1">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link href="/">SignOut</Link>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </button>
                 
                 </>
                 
