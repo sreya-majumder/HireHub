@@ -49,7 +49,7 @@ export default function Home() {
       <div className="min-h-screen flex flex-col gap-2 justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
         <div>
           <p className="text-4xl font-bold animate-appear text-black">
-            Welcome to Jobify&nbsp;&nbsp;&nbsp;
+            Ready to Apply?&nbsp;&nbsp;&nbsp;
           </p>
         </div>
 
