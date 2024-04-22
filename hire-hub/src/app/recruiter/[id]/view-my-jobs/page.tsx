@@ -6,7 +6,7 @@ import { Button } from '@nextui-org/react';
 // import Link from 'next/link';
 
 export default function Jobs({ params }: { params: { userId: string } }) {
-  const { userId } = params;
+  const userId  = params.userId;
 
   const [loading, setLoading] = useState(false);
   const [jobs, setJobs] = useState<any[]>([]);
@@ -42,25 +42,26 @@ export default function Jobs({ params }: { params: { userId: string } }) {
         <p>Loading jobs...</p>
       ) : (
         <ul>
-          {jobs.map((job, index) => (
-            <li key={index} className="mb-8">
-                <p className="mt-2">{job.title}</p>
-                <p className="mt-2">{job.companyName}</p>
-                <p className="mt-2">{job.salary}</p>
-                <p className="mt-2">{job.description}</p>
-                <div className="flex gap-2 max-w-screen-md items-center">
+              {jobs.map((job, index) => (
+                <div key={index} className="w-full bg-transparent rounded-lg shadow-md overflow-y-auto p-6">
+                  <li  className="mb-8">
+                    <p className="text-black mt-2">{job.title}</p>
+                    <p className="text-black mt-2">{job.companyName}</p>
+                    <p className="text-black mt-2">{job.location}</p>
+                    <p className="text-black mt-2">{job.salary}</p>
+                    
+                  </li>
                   <Button
-                      color="success"
-                      onClick={() => {
-                        handleDelete(job._id);
-                      }}
+                    color="success"
+                    onClick={() => {
+                      handleDelete(job._id);
+                    }}
                     >
-                      Delete Account
-                    </Button>
-                  </div>
-            </li>
+                    Delete
+                  </Button>
+                </div>
           ))}
-        </ul>
+            </ul>
 
       )}
 
@@ -68,3 +69,4 @@ export default function Jobs({ params }: { params: { userId: string } }) {
     </div>
   );
 }
+

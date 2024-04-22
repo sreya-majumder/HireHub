@@ -37,12 +37,12 @@ export default function AllComplaints() {
             ) : (
             <ul>
               {complaints.map((complaint, index) => (
-                <div className="w-full bg-transparent rounded-lg shadow-md overflow-y-auto p-6">
-                  <li key={index} className="mb-8">
+                <div key={index} className="w-full bg-transparent rounded-lg shadow-md overflow-y-auto p-6">
+                  <li  className="mb-8">
                     <p className="text-black mt-2">{complaint.content}</p>
                     <p className="text-black mt-2">Post Date: {new Date(complaint.createdAt).toLocaleDateString()} </p>
+
                     <p className="text-black mt-2">Time: {new Date(complaint.createdAt).toLocaleTimeString()}</p>
-                
                   </li>
                 </div>
           ))}

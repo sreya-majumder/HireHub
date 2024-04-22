@@ -40,8 +40,8 @@ export default function Complaints({ params }: { params: { userId: string } }) {
       ) : (
         <ul>
           {complaints.map((complaint, index) => (
-            <div className="w-full bg-transparent rounded-lg shadow-md overflow-y-auto p-6">
-            <li key={index} className="mb-8">
+            <div key={index} className="w-full bg-transparent rounded-lg shadow-md overflow-y-auto p-6">
+            <li  className="mb-8">
                 <p className="text-black mt-2">{complaint.content}</p>
                
                 <p className="text-black mt-2">
