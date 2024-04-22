@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import NavRec from '@/components/NavRec';
 
 interface JobListProps {
     params: { id: string };
@@ -42,30 +43,50 @@ const ViewJobDetails: React.FC<JobListProps> = ({ params }) => {
     }
 
     return (
-        <div>
-            <h1>Job Details:</h1>
-            <p>Title: {job.title}</p>
-            <p>Company Name: {job.companyName}</p>
-            <p>Salary: {job.salary}</p>
-            <p>Location: {job.location}</p>
-            <p>Description: {job.description}</p>
 
-            <h2>Applicants:</h2>
+        <>
+
+        <title>Job Details</title>
+
+        <div className='min-h-screen flex flex-col gap-2  bg-gradient-to-r text-black bg-clip-text animate-gradient'>
+        <NavRec />
+        <div>
+
+        <div className="text-black rounded-lg shadow-lg bg-purple-100 p-6  ml-3 mt-3 mr-3">
+            <div key={job._id} style={{ border: '1px solid #ccc', padding: '5px', margin: '5px' }}>
+            <h1 className='flex justify-center text-4xl font-bold'>Job Details</h1>
+            <p className=' text-xl font-semibold'>{job.title}</p>
+            <p className=' text-xl font-semibold'>Company Name: {job.companyName}</p>
+            <p className=' text-xl font-semibold'>Salary: {job.salary}</p>
+            <p className=' text-xl font-semibold'>Location: {job.location}</p>
+            <p className=' text-xl font-semibold'>Description: {job.description}</p>
+
+            </div>
+        </div>
+        <div className="flex justify-center text-black text-4xl font-semibold rounded-lg shadow-lg bg-emerald-100 p-6  ml-3 mt-3 mr-3">
+        <h2>Applicants</h2> </div>
             <ul>
                 {job.applicants.map((applicant: any) => (
+                    <div className="text-black rounded-lg shadow-lg bg-emerald-100 p-6  ml-3 mt-3 mr-3">
+                    <div key={job._id} style={{ border: '1px solid #ccc', padding: '5px', margin: '5px' }}>
+                    
                     <li key={applicant.applicantUserId}>
                     <Link href={`/applicants/public-profile/${applicant.applicantUserId}`}>
-                       <span style={{ cursor: 'pointer', marginRight: '10px' }}>{applicant.fullName}</span>
+                       <span className='text-xl p-1'>{applicant.fullName}</span>
                     </Link>
-                    <p>Mobile Number: {applicant.mobileNumber}</p>
-                    <p>Email: {applicant.email}</p>
-                    <p>Location: {applicant.location}</p>
-                    <p>Resume Link: {applicant.resumeLink}</p>
-                    <p>Applicant User ID: {applicant.applicantUserId}</p>
+                    <p className='text-xl p-1'>Mobile Number: {applicant.mobileNumber}</p>
+                    <p className='text-xl p-1'>Email: {applicant.email}</p>
+                    <p className='text-xl p-1'>Location: {applicant.location}</p>
+                    <p className='text-xl p-1'>Resume Link: {applicant.resumeLink}</p>
                 </li>
+                </div>
+                </div>
                 ))}
             </ul>
         </div>
+
+        </div>
+        </>
     );
 };
 
