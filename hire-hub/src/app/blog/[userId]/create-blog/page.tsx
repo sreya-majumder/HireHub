@@ -5,7 +5,9 @@ import React, { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
+import NavBlogs from "@/components/navbar/NavBlogs";
+import styles from "../../../../style/post-blog.module.css"
+import NavSigned from "@/components/NavSigned";
 export default function CreateBlog({ params }: { params: { userId: string } }) {
   const { userId } = params;
 
@@ -39,30 +41,36 @@ export default function CreateBlog({ params }: { params: { userId: string } }) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
-      <h3 className="text-3xl font-semibold">Create a New Blog</h3>
-      <div className="flex gap-2 max-w-screen-md items-center">
-        <Input
-          size="sm"
-          placeholder="Blog Topic"
+    <>
+    <title>Post Blog</title>
+    <div className="h-full flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+    <NavSigned />
+
+    <div className={styles.form_container}>
+      <form className={styles.form}>
+        <div className={styles.form_group}>
+          <label htmlFor="email">Blog topic</label>
+          <input  
+          name="email" 
+          id="email" 
+          type="text" 
           value={blogTopic}
-          onChange={(e) => setBlogTopic(e.target.value)}
-        />
-        <Input
-          size="sm"
-          placeholder="Blog Text"
+          onChange={(e) => setBlogTopic(e.target.value)}/>
+        </div>
+        <div className={styles.form_group}>
+          <label className="mt-20" htmlFor="textarea" >Write Your Blog Here</label>
+          <textarea  
           value={blogText}
-          onChange={(e) => setBlogText(e.target.value)}
-        />
-        <Button
-          color="success"
-          onClick={handlePostBlog}
-          isLoading={loading}
-        >
-          {loading ? "Saving..." : "SAVE"}
-        </Button>
-      </div>
+          onChange={(e) => setBlogText(e.target.value)} 
+          id="textarea" 
+          name="textarea"></textarea>
+        </div>
+        <Button type="submit" className={styles.form_submit_btn} onClick={handlePostBlog}
+        isLoading={loading}>Post</Button>
+      </form>
     </div>
+    </div>
+    </>
   );
 }
 

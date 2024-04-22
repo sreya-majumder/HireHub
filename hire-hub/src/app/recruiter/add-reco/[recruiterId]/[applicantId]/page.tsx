@@ -4,6 +4,8 @@ import { Input } from "@nextui-org/react";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import NavRec from "@/components/NavRec";
+import { Button } from "@nextui-org/react";
 
 export default function AddRecommendation({ params }: { params: { recruiterId: string, applicantId: string } }) {
   const [recommendation, setRecommendation] = useState("");
@@ -29,20 +31,29 @@ export default function AddRecommendation({ params }: { params: { recruiterId: s
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900 text-white p-12">
-      <h1 className="text-5xl font-semibold">Add Recommendation</h1>
-      <div className="flex flex-col gap-3 max-w-screen-sm py-4">
-      
+
+    <>
+    <title>Recommend</title>
+
+    <NavRec />
+
+
+  <div className="h-full flex flex-col gap-2 min-h-screen justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+
+      <h1 className="text-5xl text-black font-semibold p-4 ">Recommend?</h1>
         <Input
           type="text"
+          className="w-1/4"
           value={recommendation}
           onChange={(e:any) => setRecommendation(e.target.value)}
           placeholder="Enter recommendation text"
         />
-        <button onClick={handleSubmit} disabled={loading}>
+        <Button color="secondary" variant="faded" onClick={handleSubmit} disabled={loading}>
           {loading ? "Adding Recommendation..." : "Add Recommendation"}
-        </button>
-      </div>
+        </Button>
     </div>
+
+
+    </>
   );
 }

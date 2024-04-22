@@ -17,7 +17,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     if (!applicant) {
       return NextResponse.json({ message: 'Applicant not found' }, { status: 404 });
     }
-
+    console.log(applicant)
     return NextResponse.json({ message: 'Applicant retrieved successfully', applicant }, { status: 200 });
   } catch (error) {
     console.error('Error retrieving applicant:', error);

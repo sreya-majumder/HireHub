@@ -28,7 +28,9 @@
     "react-hook-form": "^7.51.0",
     "react-hot-toast": "^2.4.1",
     "react-toastify": "^10.0.4",
-    "rippleui": "^1.12.1"
+    "rippleui": "^1.12.1",
+    "sass": "^1.75.0",
+    "scss": "^0.2.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

@@ -4,7 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 import { Button } from "@nextui-org/react";
 import React, { useEffect } from "react";
 
-export default function NavSigned() {
+export default function NavBlogs() {
 
     const user = useSession();
     const { data: session, status } = useSession();
@@ -47,13 +47,12 @@ export default function NavSigned() {
             </div>
 
             <div className="hidden  md:flex md:items-center md:ml-auto md:mr--10 ">
-              <p className="text-gray-300 hover:text-white px-4">
-                <Link href="/">Home</Link>
-              </p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href="/">Home</Link></p> 
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/complaint/${stored}/add-complaint`}>Report</Link></p>
-                <p className="text-gray-300 hover:text-white px-4"><Link href="/applicants/recruiter">Recruiters</Link></p>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/blog/${stored}/view-blogs`}>Blogs</Link></p>
-                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>           
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>
+                <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/public-profile/${stored}`}>Public Profile</Link></p>
+                
                 <button
                   className="button1"
                   onClick={() => {

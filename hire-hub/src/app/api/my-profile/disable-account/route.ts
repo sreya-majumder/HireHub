@@ -3,6 +3,7 @@ import { Blog } from "@/models/Blog";
 import { Job } from "@/models/Job";
 import { connect } from "@/database/mongo.config";
 
+
 export async function POST(request: Request) {
   
   try {
@@ -14,6 +15,7 @@ export async function POST(request: Request) {
     await Blog.deleteMany( {postedBy:userId } );
     await Job.deleteMany( {postedBy:userId } );
     await User.deleteOne({_id : userId})
+    await Job.deleteMany( {postedBy:userId } );
 
     return Response.json({ message: 'account deleted successfully' }, { status: 200 });
  

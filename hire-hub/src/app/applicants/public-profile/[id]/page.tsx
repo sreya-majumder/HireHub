@@ -6,6 +6,8 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import styles from "@/style/job-post.module.css";
 import { Button } from "@nextui-org/react";
+import ProfileBlog from "@/components/ProfileBlog";
+import NavSigned from "@/components/NavSigned";
 
 interface Applicant {
   name: string;
@@ -14,10 +16,21 @@ interface Applicant {
   country: string;
   number: string;
   skills: Skill[];
+  projects : Project[];
+  job: Job[]
 }
 
 interface Skill {
   name: string;
+}
+
+interface Project {
+  name: string;
+}
+
+interface Job {
+  role : string
+  company : string
 }
 
 
@@ -54,73 +67,51 @@ export default function ApplicantProfile({
     fetchData();
   }, [user]);
 
+
+  const [loading, setLoading] = useState(false);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
+  const { id } = params;
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/api/reco/${id}`);
+        setRecommendations(response.data.recommendations.reverse());
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRecommendations();
+  }, [id]);
+  console.log(applicantData);
+
+  const name=applicantData?.name;
+
   return (
     <>
-      <div className="bg-gray-900">
-        <div className="container mx-auto px-10">
-          <nav className="flex items-center justify-between py-4">
-            <div className="flex items-center flex-shrink-0 text-white mr-6">
-              <button className="search-button">
-                <div className="hoverEffect">
-                  <Link href="/search">Search</Link>
-                  <div></div>
-                </div>
-              </button>
-              <span className="w-5font-semibold text-xl tracking-tight">
-                &nbsp;&nbsp;&nbsp;<Link href="/">Jobify</Link>
-              </span>
-            </div>
+    <title>{name}</title>
+    <NavSigned />
 
-            <div className="hidden  md:flex md:items-center md:ml-auto md:mr--10 ">
-              <p className="text-gray-300 hover:text-white px-4">
-                <Link href="/">Home</Link>
-              </p>
-              <p className="text-gray-300 hover:text-white px-4">About</p>
-              <p className="text-gray-300 hover:text-white px-4">Services</p>
 
-              {session ? (
-                <>
-                  <p className="text-gray-300 hover:text-white px-4">
-                    <Link href={`/applicant/public-profile/${stored}`}>
-                      Profile
-                    </Link>
-                  </p>
-                  <button
-                    className="button1"
-                    onClick={() => {
-                      signOut();
-                    }}
-                  >
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button className="button1">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Link href="/login">Sign In</Link>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </button>
-                  <button className="button2">
-                    <Link href="/register">Sign Up</Link>
-                  </button>
-                </>
-              )}
-            </div>
-          </nav>
-        </div>
-      </div>
-      <div className="h-screen flex flex-col gap-2 justify-center items-center bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+
+<div className="min-h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+<div className="flex flex col border border-gray-300 rounded p-4 ml-3 mr-3 mt-3">
         {applicantData && (
-          <div className={styles.form}>
-            <h1 className="text-5xl text-black justify-center items-center text-center font-semibold">
-              {applicantData.name}'s Profile
+          <div className="rounded-lg shadow-lg bg-purple-100 p-6 mt-6 w-1/2">
+            <h1 className="text-5xl text-black font-semibold ml-3">
+              {applicantData.name}
+            </h1>
+            <h1 className="text-xl text-black font-semibold ml-3">
+            {renderJobs(applicantData.job)}
+            </h1>
+            <h1 className="text-xl text-black font-semibold ml-3">
+            {renderOrgan(applicantData.job)}
             </h1>
 
-            <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-              Name: {applicantData.name}
-            </p>
+            <article className="md:grid grid-cols-3 gap-4 p-3">
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Email: {applicantData.email}
             </p>
@@ -130,24 +121,68 @@ export default function ApplicantProfile({
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Country: {applicantData.country}
             </p>
+            </article>
+            <article className="md:grid grid-cols-2 gap-4 p-3">
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Number: {applicantData.number}
             </p>
             <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
               Skills: {renderSkills(applicantData.skills)}
             </p>
-          </div>
-        )}
+            <p className="border-2 border-gray-300 rounded-lg p-4 text-black text-l bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
+              Projects: {renderProjects(applicantData.projects)}
+            </p>
 
-        {/* <Link href={`/recruiter/add-reco/${params.id}`} passHref>
+            </article>
+          
+
+            
+        
+        
+        <div className="flex flex-row gap-4 p-3">
+        <Link href={`/recruiter/add-reco/${stored}/${params.id}`} passHref>
           <Button color="primary">Recommend</Button>
-        </Link> */}
+        </Link>
         
         <Link href={`/applicants/view-reco/${params.id}`}>
         {/* <Link href={`/recommendations/${params.id}`} passHref> */}
-          <Button color="primary">Previous Recommendations</Button>
+          <Button color="primary">View All Recommendations</Button>
         </Link>
+        </div>
       </div>
+      )} 
+
+
+      <div className="rounded-lg shadow-lg bg-purple-100 p-6 mt-6 ml-2 w-1/2">
+
+      
+      <h1 className="text-black text-5xl font-semibold">Recommendations</h1>
+      {loading ? (
+        <p>Loading recommendations...</p>
+      ) : (
+        <ul>
+          
+          {recommendations.map((recommendation, index) => (
+            <li key={index}>
+              <div className="flex flex col border border-gray-400 rounded mt-2">
+              <p className="text-black text-l">{recommendation.recruiterName} : {recommendation.recommendation}</p>
+              <p className="text-black text-l"></p>
+              </div>
+            </li>
+            
+          ))}
+        </ul>
+      )}
+
+      </div>
+      </div>
+      
+
+      <ProfileBlog params={params} />
+
+      </div>
+    
+
     </>
   );
 }
@@ -158,6 +193,36 @@ function renderSkills(skills: (string | Skill)[]) {
       return skill;
     } else {
       return skill.name;
+    }
+  }).join(", ");
+}
+
+function renderProjects(projects: (string | Project)[]) {
+  return projects.map((project) => {
+    if (typeof project === "string") {
+      return project;
+    } else {
+      return project.name;
+    }
+  }).join(", ");
+}
+
+function renderJobs(jobs: (string | Job)[]) {
+  return jobs.map((job) => {
+    if (typeof job === "string") {
+      return job;
+    } else {
+      return job.role;
+    }
+  }).join(", ");
+}
+
+function renderOrgan(jobs: (string | Job)[]) {
+  return jobs.map((job) => {
+    if (typeof job === "string") {
+      return job;
+    } else {
+      return job.company;
     }
   }).join(", ");
 }

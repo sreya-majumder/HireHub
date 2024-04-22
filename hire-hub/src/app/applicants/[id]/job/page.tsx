@@ -5,10 +5,12 @@ import axios from 'axios';
 import Link from 'next/link';
 import { Button } from "@nextui-org/react";
 import NavSigned from '@/components/NavSigned';
-
+import extra from '../../../../style/select.module.scss';
+import styles from '../../../../style/extra.module.css';
 interface Job {
   _id: string;
   title: string;
+  description: string;
   companyName: string;
   salary: string;
   location: string;
@@ -60,10 +62,11 @@ return (
   <>
 
   <NavSigned />
-  <div className="h-screen  bg-gradient-to-r text-black bg-clip-text animate-gradient">
-  <div>
+  <div className="min-h-screen flex flex-col gap-2 bg-gradient-to-r text-black bg-clip-text animate-gradient">
+
+  <div className='flex flex-row justify-center p-3 mt-2 '>
+  <div className='mt-1'>
   
-  <article className="md:grid grid-cols-4 gap-2 ">
     {/* Search Bar */}
     <input
       type="text"
@@ -71,14 +74,16 @@ return (
       placeholder="Search by Title"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
-      style={{ marginBottom: '10px', width: '150%' }}
-    />
+      
+    /></div>
 
     {/* Location Filter */}
-    <select
+    <div>
+    <article className="md:grid grid-cols-4 gap-2  ">
+    <select className={extra.selec}
       value={locationFilter}
       onChange={(e) => setLocationFilter(e.target.value)}
-      style={{ marginBottom: '10px', width: '50%', marginLeft: '60%'}}
+      
     >
       <option value="">All Locations</option>
       <option value="Dhaka">Dhaka</option>
@@ -89,10 +94,10 @@ return (
     </select>
 
     {/* Skill Filter */}
-    <select
+    <select className={extra.selec}
       value={selectedSkill}
       onChange={(e) => setSelectedSkill(e.target.value)}
-      style={{ marginBottom: '10px,', width: '50%', marginLeft: '10%'}}
+      
     >
       <option value="">All Skills</option>
       <option value="Nodejs">Nodejs</option>
@@ -103,7 +108,7 @@ return (
     </select>
 
     {/* Salary Range Filter */}
-    <select
+    <select className={extra.selec}
       onChange={(e) => {
         const selectedOption = salaryRangeOptions.find(option => option.label === e.target.value);
         if (selectedOption) {
@@ -114,41 +119,46 @@ return (
           setMaxSalary(null);
         }
       }}
-      style={{ marginBottom: '10px', width: '50%', marginLeft: '-40%'}}
     >
       {salaryRangeOptions.map(option => (
         <option key={option.label} value={option.label}>{option.label}</option>
       ))}
     </select>
+
+    <button className={styles.complaint}><Link href={`/applicants/${id}/suggested-jobs`}>Suggested/Demanded Jobs</Link> </button>
     </article>
+    </div>
+    </div>
 
     {/* Job Listings */}
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+    
+          <div>
+      <h1 className="flex justify-center text-black text-xl font-bold">All Jobs</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
         filteredJobs.map((job) => (
-          <div
-            key={job._id}
-            style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '99%' }}
-          >
-            <h2>{job.title}</h2>
+          <div className="text-black rounded-lg shadow-lg bg-purple-100 p-6  ml-3 mt-3 mr-3">
+          <div key={job._id} style={{ border: '1px solid #ccc', padding: '5px', margin: '5px' }}>
+            <h2 className='font-semibold text-xl'>{job.title}</h2>
             <p>Company: {job.companyName}</p>
             <p>Salary: {job.salary}</p>
             <p>Location: {job.location}</p>
+            <p>Description: {job.description}</p>
             <p>Skills: {job.skills.join(', ')}</p>
-
             <div style={{ marginBottom: '10px' }}>
               <Link href={`/job/${job._id}`}>
-                <Button>Apply</Button>
+                <Button color="success">Apply</Button>
               </Link>
             </div>
-            
+            </div>
           </div>
         ))
       )}
+
+
     </div>
-  </div>
+
   </div>
 
   </>
