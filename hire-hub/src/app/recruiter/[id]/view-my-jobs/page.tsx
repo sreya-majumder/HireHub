@@ -5,8 +5,8 @@ import axios from "axios";
 import { Button } from '@nextui-org/react';
 // import Link from 'next/link';
 
-export default function Jobs({ params }: { params: { userId: string } }) {
-  const userId  = params.userId;
+export default function Jobs({ params }: { params: { id: string } }) {
+  const userId  = params.id;
 
   const [loading, setLoading] = useState(false);
   const [jobs, setJobs] = useState<any[]>([]);

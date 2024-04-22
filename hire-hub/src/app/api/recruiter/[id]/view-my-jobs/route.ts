@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Job } from '@/models/Job';
 
-export async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
     try {
-        const userId  = params.userId;
+        const userId  = params.id;
+        console.log(userId)
         const jobs = await Job.find({ postedBy: userId });
         console.log(jobs)
 
