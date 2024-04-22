@@ -78,6 +78,7 @@ const ViewJobDetails: React.FC<JobListProps> = ({ params }) => {
                     <p className='text-xl p-1'>Email: {applicant.email}</p>
                     <p className='text-xl p-1'>Location: {applicant.location}</p>
                     <p className='text-xl p-1'>Resume Link: {applicant.resumeLink}</p>
+                    
                 </li>
                 </div>
                 </div>

@@ -8,7 +8,6 @@ import extra from '../../../../style/extra.module.css';
 
 export default function Complaints({ params }: { params: { userId: string } }) {
   const { userId } = params;
-
   const [loading, setLoading] = useState(false);
   const [complaints, setcomplaints] = useState<any[]>([]);
 

@@ -64,6 +64,7 @@ export default function Jobs({ params }: { params: { id: string } }) {
                 <p className="text-black mt-2">Company Name: {job.companyName}</p>
                 <p className="text-black mt-2">Location: {job.location}</p>
                 <p className="text-black mt-2">Salary: {job.salary}</p>
+                <p className="text-black mt-2">Description: {job.description}</p>
                 
               </li>
               <Button

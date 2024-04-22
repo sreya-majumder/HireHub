@@ -70,7 +70,6 @@ const SearchPage = () => {
               <Link href={`recruiter/public-profile/${user._id}`}><p className="text-xl text-black font-semibold p-1">{user.name}</p></Link>
 
               <h1 className="text-xl text-black font-semibold p-1">{renderJobs(user.job)} |{renderOrgan(user.job)}</h1>
-
               <p className="text-xl text-blackp p-1">Email: {user.email}</p>
               <p className="text-xl text-blackp p-1">City: {user.city}</p>
               <p className="text-xl text-blackp p-1">Country: {user.country}</p>

@@ -50,6 +50,7 @@ export default function Blogs({ params }: { params: { userId: string } }) {
     <title>My Blogs</title>
     <NavSigned />
     <div className="min-h-screen flex flex-col gap-2 bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+      
       <h1 className="text-5xl font-semibold ">Blogs</h1>
 
       
