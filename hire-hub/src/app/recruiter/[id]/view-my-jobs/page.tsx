@@ -15,7 +15,7 @@ export default function Jobs({ params }: { params: { userId: string } }) {
     const fetchJobs = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/recruiter/${userId}/view-my-complaints`);
+        const response = await axios.get(`http://localhost:3000/api/recruiter/${userId}/view-my-jobs`);
         setJobs(response.data.jobs.reverse());
       } catch (error) {
         console.error("Error fetching jobs:", error);
