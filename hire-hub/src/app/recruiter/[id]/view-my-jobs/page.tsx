@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import { Button } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 // import Link from 'next/link';
 
 export default function Jobs({ params }: { params: { userId: string } }) {
@@ -15,7 +15,7 @@ export default function Jobs({ params }: { params: { userId: string } }) {
     const fetchJobs = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/recruiter/${userId}/view-my-complaints`);
+        const response = await axios.get(`http://localhost:3000/api/recruiter/${userId}/view-my-jobs`);
         setJobs(response.data.jobs.reverse());
       } catch (error) {
         console.error("Error fetching jobs:", error);
@@ -25,6 +25,15 @@ export default function Jobs({ params }: { params: { userId: string } }) {
     };
     fetchJobs();
   }, []);
+
+  async function handleDelete(jobId : any) {
+    fetch(`http://localhost:3000/api/job/delete-job`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: jobId,
+      }),
+    });
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white p-12">
@@ -39,10 +48,23 @@ export default function Jobs({ params }: { params: { userId: string } }) {
                 <p className="mt-2">{job.companyName}</p>
                 <p className="mt-2">{job.salary}</p>
                 <p className="mt-2">{job.description}</p>
+                <div className="flex gap-2 max-w-screen-md items-center">
+                  <Button
+                      color="success"
+                      onClick={() => {
+                        handleDelete(job._id);
+                      }}
+                    >
+                      Delete Account
+                    </Button>
+                  </div>
             </li>
           ))}
         </ul>
+
       )}
+
+  
     </div>
   );
 }
