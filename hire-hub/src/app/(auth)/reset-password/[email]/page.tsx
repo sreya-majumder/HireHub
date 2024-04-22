@@ -78,7 +78,7 @@ export default function ResetPassword({params}: {params: { email: string };}) {
               <input
                 type="password"
                 placeholder="Enter your new password"
-                className="w-full h-10 p-2 border rounded-md outline-red-400"
+                className="w-full h-10 p-2 border rounded-md outline-red-400 text-black"
                 onChange={(event) =>
                   setAuthState({ ...authState, password: event.target.value })
                 }
@@ -89,7 +89,7 @@ export default function ResetPassword({params}: {params: { email: string };}) {
               <input
                 type="password"
                 placeholder="Enter your confirm password"
-                className="w-full h-10 p-2 border rounded-md outline-red-400"
+                className="w-full h-10 p-2 border rounded-md outline-red-400 text-black"
                 onChange={(event) =>
                   setAuthState({ ...authState, cpassword: event.target.value })
                 }

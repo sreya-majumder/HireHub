@@ -97,15 +97,6 @@ const userSchema = new Schema({
     required: false,
   },
 
-  ratings: {
-    type: [
-      {
-        jobID: Schema.Types.ObjectId,
-        rating: Number,
-      },
-    ],
-    required: false,
-  },
   disabled: {
     type: Schema.Types.Boolean,
   }

@@ -74,12 +74,19 @@ export default function ForgotPassword() {
             <div className="mt-5">
               <label className="block">Email</label>
               <input
+                  type="email"
+                  placeholder="Jobify@gmail.com"
+                  className="w-full h-10 p-2 border rounded-md outline-red-400 text-black"
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+                <span className="text-red-500">{errors?.email}</span>
+              {/* <input
                 type="email"
                 placeholder="Jobify@gmail.com"
                 className="w-full h-10 p-2 border rounded-md outline-red-400"
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <span className="text-red-500">{errors?.email}</span>
+              <span className="text-red-500">{errors?.email}</span> */}
             </div>
             <div className="mt-5">
               <button

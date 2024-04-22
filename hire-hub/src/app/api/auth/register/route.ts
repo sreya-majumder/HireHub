@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         const verificationCode = generateVerificationCode();
         savedUser.verificationCode = verificationCode
         await savedUser.save()
-        // await sendVerificationEmail(output.email, verificationCode);
+        await sendVerificationEmail(output.email, verificationCode);
         
         return NextResponse.json(
           { status:200,
@@ -74,6 +74,5 @@ export async function POST(request: NextRequest) {
 }
 
 const generateVerificationCode = () => {
-    return Math.random().toString(36).substring(7);
+  return Math.floor(100000 + Math.random() * 900000).toString();
 };
-

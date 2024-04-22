@@ -40,8 +40,8 @@ export default function SignUp() {
         const id = user._id;
         console.log(id)
         if (response.status == 200) {
-          //router.push(`/verify-email/${id}`);
-          router.push(`/login?message=${response.msg}`);
+          router.push(`/verify-email/${id}`);
+          //router.push(`/login?message=${response.msg}`);
         } else if (response?.status == 400) {
           setError(response?.errors);
         } else {
