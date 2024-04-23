@@ -28,7 +28,7 @@ export default function AllComplaints() {
     <>
       <title>Users Complaints</title>
 
-      <div className="h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+      <div className="min-h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
         <NavBlogs />
           <div className="flex flex-col p-12">
             <h1 className="text-5xl text-white font-semibold mb-8">User complaints</h1>

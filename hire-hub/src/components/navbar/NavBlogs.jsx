@@ -37,7 +37,7 @@ export default function NavBlogs() {
             <div className="flex items-center flex-shrink-0 text-white mr-6">
               <button className="search-button">
                 <div className="hoverEffect">
-                  <Link href="/search">Search</Link>
+                <Link href="/search-user">Search</Link>
                   <div></div>
                 </div>
               </button>

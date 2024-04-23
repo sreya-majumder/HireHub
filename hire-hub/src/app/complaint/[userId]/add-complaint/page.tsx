@@ -45,7 +45,7 @@ export default function AddComplaint({ params }: { params: { userId: string } })
   return (
     <>
     <title>Submit Feedback</title>
-    <div className="h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
+    <div className="min-h-screen flex flex-col gap-2  bg-gradient-to-r text-transparent bg-clip-text animate-gradient">
       <NavBlogs />
       <div className={styles.card}>
         <div className={styles.card2}>
