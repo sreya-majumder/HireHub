@@ -6,6 +6,8 @@ connect();
 
 export async function GET(request: NextRequest, res: NextResponse) {
   try {
+
+    // setting search params
     const urlSearchParams = new URLSearchParams(request.nextUrl.search);
     const search = urlSearchParams.get('search');
     
