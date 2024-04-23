@@ -64,7 +64,7 @@ export default function NavRec() {
                 <>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/profile/${stored}`}>Profile</Link></p>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/recruiter/public-profile/${stored}`}>Public Profile</Link></p>
-                <button
+                {/* <button
                   className="button1"
                   onClick={() => {
                     signOut();
@@ -72,6 +72,11 @@ export default function NavRec() {
                 >
                 <Link href="/login">Sign Out</Link> 
                   
+                </button> */}
+
+                <button
+                  className="button1"
+                ><Link href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
                 </button>
                 
                 </>

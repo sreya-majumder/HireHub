@@ -54,7 +54,7 @@ export default function NavSigned() {
                 <p className="text-gray-300 hover:text-white px-4"><Link href="/applicants/recruiter">Recruiters</Link></p>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/blog/${stored}/view-blogs`}>Blogs</Link></p>
                 <p className="text-gray-300 hover:text-white px-4"><Link href={`/applicants/profile/${stored}`}>Profile</Link></p>           
-                <button
+                {/* <button
                   className="button1"
                   onClick={() => {
                     signOut();
@@ -62,6 +62,11 @@ export default function NavSigned() {
                 >
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </button> */}
+
+                <button
+                  className="button1"
+                ><Link href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign Out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
                 </button>
 
                 </div>
