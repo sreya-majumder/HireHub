@@ -1,1 +1,1 @@
-HireHub is an online job recruitement platform
+Jobify is an online job recruitement platform
